@@ -4,8 +4,9 @@ import { StyleSheet, Text, Navigator, View, TextInput } from "react-native";
 import Login from "./Login";
 import Home from "./Home";
 import Navbar from "./Navbar";
+import Balance from "./Balance";
 import { Link } from "@react-navigation/native";
-
+import MonthDropDown from "./MonthDropDown";
 export default function App(props) {
   let user = {
     balance: "200,00",
@@ -15,8 +16,10 @@ export default function App(props) {
   return (
     <View>
       {/* <Login /> */}
-      <Home user={user} />
+      {/* <Home user={user} /> */}
 
+      <Balance user={user} />
+      {/* <MonthDropDown /> */}
       {/* <Navbar user={user} /> */}
       {/* <Navigator
         initialRoute={{ title: "Awesome Scene", index: 0 }}

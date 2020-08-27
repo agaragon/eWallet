@@ -3,7 +3,6 @@ import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faSortDown, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { disableExpoCliLogging } from "expo/build/logs/Logs";
 
 function Navbar(props) {
   const [toggleStatus, toggleAction] = useState(false);

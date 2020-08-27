@@ -28,6 +28,7 @@ function Home(props) {
     </View>
   );
 }
+let primaryColor = "#173f5f";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -44,10 +45,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: "#173f5f",
+    color: primaryColor,
   },
   title: {
-    color: "#173f5f",
+    color: primaryColor,
     fontSize: 35,
     textAlign: "center",
     marginBottom: 20,
