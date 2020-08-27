@@ -2,12 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, Navigator, View, TextInput } from "react-native";
 import Login from "./Login";
+import Home from "./Home";
+import Navbar from "./Navbar";
 import { Link } from "@react-navigation/native";
 
-export default function App() {
+export default function App(props) {
+  let user = { balance: "200,00", name: "André Aragon" };
   return (
     <View>
-      <Login />
+      {/* <Login /> */}
+      {/* <Home user={user} /> */}
+      <Navbar user={user} />
       {/* <Navigator
         initialRoute={{ title: "Awesome Scene", index: 0 }}
         renderScene={(route, navigator) => <Text>Hello {route.title}!</Text>}
