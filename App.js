@@ -7,12 +7,17 @@ import Navbar from "./Navbar";
 import { Link } from "@react-navigation/native";
 
 export default function App(props) {
-  let user = { balance: "200,00", name: "André Aragon" };
+  let user = {
+    balance: "200,00",
+    name: "André Aragon",
+    cpf: "314.159.265-35",
+  };
   return (
     <View>
       {/* <Login /> */}
-      {/* <Home user={user} /> */}
-      <Navbar user={user} />
+      <Home user={user} />
+
+      {/* <Navbar user={user} /> */}
       {/* <Navigator
         initialRoute={{ title: "Awesome Scene", index: 0 }}
         renderScene={(route, navigator) => <Text>Hello {route.title}!</Text>}

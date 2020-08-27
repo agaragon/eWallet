@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faCashRegister,
@@ -9,6 +10,7 @@ import {
 function Home(props) {
   return (
     <View style={styles.mainView}>
+      <Navbar user={props.user} />
       <Text style={styles.title}>Bem Vindo {props.user?.name}!</Text>
       <Text style={styles.text}>O seu saldo é R$ {props.user?.balance}</Text>
       <TouchableOpacity style={styles.btnView}>
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 3,
     padding: 3,
-    border: "none",
   },
   text: {
     fontSize: 20,
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: "center",
     fontSize: 15,
-    fontWeight: 600,
+    fontWeight: "600",
     color: "#c3f2fc",
     marginRight: 20,
   },
@@ -85,8 +86,6 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     resizeMode: "contain",
-    // marginTop: -160,
-    // marginBottom: -70,
   },
 });
 

@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 3,
     padding: 3,
-    border: "none",
   },
   text: {
     fontSize: 20,
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: "center",
     fontSize: 15,
-    fontWeight: 600,
+    fontWeight: "600",
     color: "#c3f2fc",
   },
   mainView: {
