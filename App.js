@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, Navigator, View, TextInput } from "react-native";
-
+import Login from "./Login";
 import { Link } from "@react-navigation/native";
 
 export default function App() {
   return (
     <View>
+      <Login />
       {/* <Navigator
         initialRoute={{ title: "Awesome Scene", index: 0 }}
         renderScene={(route, navigator) => <Text>Hello {route.title}!</Text>}
