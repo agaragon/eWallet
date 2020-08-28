@@ -46,7 +46,7 @@ function Navbar(props) {
 let primaryColor = "#173f5f";
 const styles = StyleSheet.create({
   text: { color: primaryColor, fontSize: 20 },
-  mainView: { width: "100%", top: 0, position: "fixed" },
+  mainView: { width: "100%", top: 0, position: "absolute" },
   container: {
     flexDirection: "row",
     backgroundColor: "#5093cb",

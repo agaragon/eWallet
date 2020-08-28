@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import MonthDropDown from "./MonthDropDown";
+import YearDropdown from "./YearDropdown";
 import {
   faCashRegister,
   faMoneyBillAlt,
@@ -13,13 +14,34 @@ import Title from "./Title";
 function Balance(props) {
   let titleContent = "Qual mês você gostaria de consultar?";
   return (
-    <View style={styles.mainView}>
-      <Navbar user={props.user} />
-
-      <View style={{ width: 150, position: "fixed", top: 90 }}>
+    <View style={[styles.mainView, { flexDirection: "column-reverse" }]}>
+      <View
+        style={{
+          width: 150,
+          position: "fixed",
+          top: 90,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Title content={titleContent} />
-        <MonthDropDown />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: 300,
+          }}
+        >
+          <MonthDropDown />
+          <YearDropdown />
+        </View>
+        <TouchableOpacity
+          style={[styles.btnView, { top: 300, position: "fixed", zIndex: -1 }]}
+        >
+          <Text style={styles.btnText}>Faça sua consulta</Text>
+        </TouchableOpacity>
       </View>
+      <Navbar user={props.user} />
     </View>
   );
 }
@@ -31,6 +53,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  btnView: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 15,
+    margin: 10,
+    width: 170,
+    height: 50,
+    backgroundColor: "#3caea3",
+    padding: 0,
+  },
+  btnText: {
+    textAlign: "center",
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#c3f2fc",
   },
   inputField: {
     margin: 10,

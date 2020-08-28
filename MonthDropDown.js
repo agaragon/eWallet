@@ -32,6 +32,8 @@ function MonthDropDown(props) {
         {
           backgroundColor: secondaryColor,
           justifyContent: "center",
+          width: 110,
+          backgroundColor: secondaryColor,
         },
       ]}
     >
@@ -41,8 +43,9 @@ function MonthDropDown(props) {
         }}
         style={[
           {
-            width: 60,
+            width: 90,
             display: toggleStatus ? "none" : "flex",
+            backgroundColor: secondaryColor,
           },
           styles.centeredFlex,
         ]}
@@ -64,13 +67,28 @@ function MonthDropDown(props) {
               }}
               style={[
                 styles.centeredFlex,
-                { backgroundColor: secondaryColor, width: "100%" },
+
+                {
+                  backgroundColor: secondaryColor,
+                  width: "100%",
+                  marginTop: -3,
+                  width: 100,
+                  height: 30,
+                },
               ]}
             >
               <Text key={month} style={styles.monthText}>
                 {month}
               </Text>
-              <View style={styles.horizontalLine} />
+              <View
+                style={{
+                  width: "100%",
+                  backgroundColor: secondaryColor,
+                  height: 1,
+                }}
+              >
+                <View style={styles.horizontalLine} />
+              </View>
             </TouchableOpacity>
           );
         })}
