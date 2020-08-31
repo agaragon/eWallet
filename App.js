@@ -11,7 +11,6 @@ import Payments from "./Payments";
 import Balance from "./Balance";
 import Registration from "./Registration";
 import { Provider } from "react-redux";
-import { Link } from "@react-navigation/native";
 import Transfers from "./Transfers";
 import "react-native-gesture-handler";
 import configureStore from "./configureStore";

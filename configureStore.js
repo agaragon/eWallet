@@ -5,7 +5,12 @@ import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-community/async-storage";
 
 import reducer from "./reducer";
-import { sagaFetchUser, sagaRegistration } from "./sagas";
+import {
+  sagaFetchUser,
+  sagaRegistration,
+  sagaSMSCheck,
+  sagaMakeQuery,
+} from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,6 +25,8 @@ export default () => {
   let store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
   sagaMiddleware.run(sagaFetchUser);
   sagaMiddleware.run(sagaRegistration);
+  sagaMiddleware.run(sagaSMSCheck);
+  sagaMiddleware.run(sagaMakeQuery);
   let persistor = persistStore(store);
   return { store, persistor };
 };

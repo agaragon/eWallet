@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import NumberFormat from "react-number-format";
 import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
 import Navbar from "./Navbar";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -63,13 +64,24 @@ function Balance(props) {
               />
             )}
             <Text style={styles.title}>
-              Mês da Consulta: {date.getMonth()}/{date.getFullYear()}
+              Mês da Consulta: {date.getDate()}/{date.getMonth() + 1}/
+              {date.getFullYear()}
             </Text>
             <TouchableOpacity
               style={[styles.btnView]}
-              onPress={() => props.navigation.navigate("Home")}
+              onPress={() => {
+                props.navigation.navigate("Home");
+                props.dispatch({ type: "BILL_QUERY", date: date });
+              }}
             >
-              <Text style={styles.btnText}>Faça sua consulta</Text>
+              <Text
+                style={styles.btnText}
+                // onPress={() => {
+                //   props.dispatch({ type: "BILL_QUERY", date: date });
+                // }}
+              >
+                Faça sua consulta
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -54,16 +54,14 @@ function Login(props) {
         <Text style={styles.btnText}>Accesse sua conta</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btnView}>
-        <Text
-          style={styles.btnText}
-          onPress={() => {
-            props.navigation.navigate("Registration");
-            props.dispatch({ type: "SEND_SMS" });
-          }}
-        >
-          Registre-se com o seu telefone
-        </Text>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate("Registration");
+          props.dispatch({ type: "SEND_SMS" });
+        }}
+        style={styles.btnView}
+      >
+        <Text style={styles.btnText}>Registre-se com o seu telefone</Text>
       </TouchableOpacity>
       <Image
         style={styles.walletLogo}

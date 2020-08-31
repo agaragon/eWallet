@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   TextInput,
   Text,
@@ -8,7 +9,7 @@ import {
   Image,
 } from "react-native";
 
-function Login(props) {
+function Registration(props) {
   let textInput1;
   let textInput2;
   let textInput3;
@@ -99,7 +100,10 @@ function Login(props) {
 
       <TouchableOpacity
         style={styles.btnView}
-        onPress={() => props.navigation.navigate("Login")}
+        onPress={() => {
+          props.dispatch({ type: "CHECK_SMS" });
+          props.navigation.navigate("Login");
+        }}
       >
         <Text style={styles.btnText}>Enviar</Text>
       </TouchableOpacity>
@@ -172,4 +176,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default connect()(Registration);
