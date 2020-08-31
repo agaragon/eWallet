@@ -18,7 +18,7 @@ function Balance(props) {
       <View
         style={{
           width: 150,
-          position: "fixed",
+          position: "absolute",
           top: 90,
           justifyContent: "center",
           alignItems: "center",
@@ -36,7 +36,10 @@ function Balance(props) {
           <YearDropdown />
         </View>
         <TouchableOpacity
-          style={[styles.btnView, { top: 300, position: "fixed", zIndex: -1 }]}
+          style={[
+            styles.btnView,
+            { top: 300, position: "absolute", zIndex: -1 },
+          ]}
         >
           <Text style={styles.btnText}>Faça sua consulta</Text>
         </TouchableOpacity>
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "100vh",
+    flex: 1,
   },
 });
 

@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#3689b2",
     alignItems: "center",
     justifyContent: "center",
-    height: "100vh",
+    flex: 1,
   },
   walletLogo: {
     width: 180,
