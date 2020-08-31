@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import {
   TextInput,
   Text,
@@ -7,8 +9,11 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
+import { useState } from "react";
 
 function Login(props) {
+  let [userName, changeUserName] = useState("");
+  let [usersPassword, changeUsersPassword] = useState("");
   return (
     <View style={styles.mainView}>
       <Image
@@ -18,7 +23,13 @@ function Login(props) {
       <Text style={styles.title}>Acesse aqui sua carteira eletrônica!</Text>
       <View style={styles.textView1}>
         <Text style={styles.text}>Coloque seu Login</Text>
-        <TextInput style={styles.inputField} />
+        <TextInput
+          style={styles.inputField}
+          onChangeText={(text) => {
+            changeUserName(text);
+            console.log(userName);
+          }}
+        />
       </View>
       <View style={styles.textView2}>
         <Text style={styles.text}>Coloque sua senha</Text>
@@ -32,7 +43,9 @@ function Login(props) {
       </View>
       <TouchableOpacity
         style={styles.btnView}
-        onPress={() => props.navigation.navigate("Home")}
+        onPress={() => {
+          props.navigation.navigate("Home");
+        }}
       >
         <Text style={styles.btnText}>Accesse sua conta</Text>
       </TouchableOpacity>
@@ -121,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default connect()(Login);

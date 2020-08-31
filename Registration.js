@@ -70,7 +70,10 @@ function Login() {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.btnView}>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => props.navigation.navigate("Login")}
+      >
         <Text style={styles.btnText}>Enviar</Text>
       </TouchableOpacity>
     </View>
