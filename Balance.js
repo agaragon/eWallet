@@ -27,6 +27,7 @@ function Balance(props) {
         <Title content={titleContent} />
         <View
           style={{
+            marginTop: 120,
             flexDirection: "row",
             justifyContent: "space-around",
             width: 300,
@@ -38,7 +39,7 @@ function Balance(props) {
         <TouchableOpacity
           style={[
             styles.btnView,
-            { top: 300, position: "absolute", zIndex: -1 },
+            { top: 300, position: "absolute", zIndex: -1, marginTop: 100 },
           ]}
         >
           <Text style={styles.btnText}>Faça sua consulta</Text>
