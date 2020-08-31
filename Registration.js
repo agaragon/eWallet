@@ -9,6 +9,10 @@ import {
 } from "react-native";
 
 function Login() {
+  let textInput1;
+  let textInput2;
+  let textInput3;
+  let textInput4;
   return (
     <View style={styles.mainView}>
       <Image
@@ -21,7 +25,13 @@ function Login() {
       </Text>
       <View style={{ flexDirection: "row" }}>
         <View>
-          <TextInput style={styles.number} />
+          <TextInput
+            style={styles.number}
+            ref={(input) => {
+              textInput1 = input;
+            }}
+            onSubmitEditing={() => textInput2.focus()}
+          />
 
           <View
             style={{
@@ -33,7 +43,13 @@ function Login() {
           ></View>
         </View>
         <View>
-          <TextInput style={styles.number} />
+          <TextInput
+            style={styles.number}
+            ref={(input) => {
+              textInput2 = input;
+            }}
+            onSubmitEditing={() => textInput3.focus()}
+          />
 
           <View
             style={{
@@ -45,7 +61,13 @@ function Login() {
           ></View>
         </View>
         <View>
-          <TextInput style={styles.number} />
+          <TextInput
+            style={styles.number}
+            ref={(input) => {
+              textInput3 = input;
+            }}
+            onSubmitEditing={() => textInput4.focus()}
+          />
 
           <View
             style={{

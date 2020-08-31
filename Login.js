@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 
 function Login(props) {
-  let [userName, changeUserName] = useState("");
+  let [userName, changeUsersName] = useState("");
   let [usersPassword, changeUsersPassword] = useState("");
   return (
     <View style={styles.mainView}>
@@ -26,8 +26,7 @@ function Login(props) {
         <TextInput
           style={styles.inputField}
           onChangeText={(text) => {
-            changeUserName(text);
-            console.log(userName);
+            changeUsersName(text);
           }}
         />
       </View>
@@ -39,6 +38,9 @@ function Login(props) {
           secureTextEntry={true}
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
+          onChangeText={(text) => {
+            changeUsersPassword(text);
+          }}
         />
       </View>
       <TouchableOpacity
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
   inputField: {
     height: 30,
     color: "black",
-    backgroundColor: "#cccccc",
+    backgroundColor: "#fff",
     borderRadius: 3,
     padding: 3,
   },
