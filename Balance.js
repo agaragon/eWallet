@@ -19,7 +19,7 @@ function Balance(props) {
         style={{
           width: 150,
           position: "absolute",
-          top: 90,
+          top: 120,
           justifyContent: "center",
           alignItems: "center",
         }}

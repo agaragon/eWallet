@@ -61,6 +61,7 @@ function MonthDropDown(props) {
         {months.map((month) => {
           return (
             <TouchableOpacity
+              key={month}
               onPress={() => {
                 changeToggle(!toggleStatus);
                 changeMonth(month);
@@ -77,9 +78,7 @@ function MonthDropDown(props) {
                 },
               ]}
             >
-              <Text key={month} style={styles.monthText}>
-                {month}
-              </Text>
+              <Text style={styles.monthText}>{month}</Text>
               <View
                 style={{
                   width: "100%",

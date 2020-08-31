@@ -60,6 +60,7 @@ function YearDropdown(props) {
         {arrayOfYears.map((year) => {
           return (
             <TouchableOpacity
+              key={year}
               onPress={() => {
                 changeToggle(!toggleStatus);
                 changeYear(year);
