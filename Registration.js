@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   TextInput,
@@ -10,6 +10,11 @@ import {
 } from "react-native";
 
 function Registration(props) {
+  let [digit1, changeDigit1] = useState(null);
+  let [digit2, changeDigit2] = useState(null);
+  let [digit3, changeDigit3] = useState(null);
+  let [digit4, changeDigit4] = useState(null);
+  let combination;
   let textInput1;
   let textInput2;
   let textInput3;
@@ -31,7 +36,12 @@ function Registration(props) {
             ref={(input) => {
               textInput1 = input;
             }}
-            onChange={() => textInput2.focus()}
+            onChange={() => {
+              textInput2.focus();
+            }}
+            onChangeText={(text) => {
+              changeDigit1(text);
+            }}
           />
 
           <View
@@ -50,6 +60,9 @@ function Registration(props) {
               textInput2 = input;
             }}
             onChange={() => textInput3.focus()}
+            onChangeText={(text) => {
+              changeDigit2(text);
+            }}
           />
 
           <View
@@ -68,6 +81,9 @@ function Registration(props) {
               textInput3 = input;
             }}
             onChange={() => textInput4.focus()}
+            onChangeText={(text) => {
+              changeDigit3(text);
+            }}
           />
 
           <View
@@ -85,6 +101,9 @@ function Registration(props) {
             ref={(input) => {
               textInput4 = input;
             }}
+            onChangeText={(text) => {
+              changeDigit4(text);
+            }}
           />
 
           <View
@@ -101,7 +120,8 @@ function Registration(props) {
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          props.dispatch({ type: "CHECK_SMS" });
+          combination = digit1 + digit2 + digit3 + digit4;
+          props.dispatch({ type: "CHECK_SMS", input: combination });
           props.navigation.navigate("Login");
         }}
       >

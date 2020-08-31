@@ -67,13 +67,11 @@ function Payments(props) {
         Data do pagamento: {date.getDate()}/{date.getMonth()}/
         {date.getFullYear()}
       </Text>
-      <TouchableOpacity style={styles.btnView}>
-        <Text
-          style={styles.btnText}
-          onPress={() => props.navigation.navigate("Home")}
-        >
-          Confirme seu pagamento
-        </Text>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => props.navigation.navigate("Home")}
+      >
+        <Text style={styles.btnText}>Confirme seu pagamento</Text>
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>

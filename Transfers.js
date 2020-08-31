@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
+import { TextInputMask } from "react-native-masked-text";
 import {
   StyleSheet,
   Text,
@@ -14,6 +15,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 function Transfers(props) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
+  const [transferValue, changeTransferValue] = useState(0);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -44,14 +46,27 @@ function Transfers(props) {
       <View style={styles.textView}>
         <Text style={[styles.text, { width: 120 }]}>Agência bancária</Text>
         <TextInput
-          placeholder="password"
           style={[styles.inputField, { width: 90, marginRight: 70 }]}
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
         />
       </View>
+      <View style={styles.textView}>
+        <Text style={[styles.text, { width: 120 }]}>
+          Valor da transferência
+        </Text>
+        <TextInputMask
+          style={[styles.inputField, { width: 90, marginRight: 70 }]}
+          type={"money"}
+          value={transferValue}
+          onChangeText={(text) => {
+            text = text.replace("R$", "").replace(".", "").replace(",", ".");
+            changeTransferValue(text);
+          }}
+        />
+      </View>
       <View style={{ marginTop: 20 }}>
-        <TouchableOpacity style={styles.btnView}>
+        <TouchableOpacity style={styles.btnView} onPress={showDatepicker}>
           <Text style={styles.btnText} onPress={showDatepicker}>
             Escolha uma data para sua transferência
           </Text>
@@ -72,13 +87,11 @@ function Transfers(props) {
         {date.getFullYear()}
       </Text>
 
-      <TouchableOpacity style={styles.btnView}>
-        <Text
-          style={styles.btnText}
-          onPress={() => props.navigation.navigate("Home")}
-        >
-          Confirme sua transferência
-        </Text>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => props.navigation.navigate("Home")}
+      >
+        <Text style={styles.btnText}>Confirme sua transferência</Text>
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>

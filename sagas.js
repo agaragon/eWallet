@@ -19,7 +19,7 @@ function* registerUser(action) {
   console.log("SMS Sent");
 }
 function* checkSMS(action) {
-  console.log("Message Checked");
+  console.log(`Message Checked your input was ${action.input}`);
 }
 function* makeQuery(action) {
   //   let bill = getData(action.date);

@@ -38,15 +38,13 @@ function Home(props) {
         <Text style={styles.btnText}>Faça uma transferência</Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faCashRegister} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.btnView}>
-        <Text
-          style={styles.btnText}
-          onPress={() => {
-            props.navigation.navigate("Payments");
-          }}
-        >
-          Pague uma conta
-        </Text>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => {
+          props.navigation.navigate("Payments");
+        }}
+      >
+        <Text style={styles.btnText}>Pague uma conta</Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faMoneyBillAlt} />
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
