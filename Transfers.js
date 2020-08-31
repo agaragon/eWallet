@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-function Payments(props) {
+function Transfers(props) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
 
@@ -22,19 +22,24 @@ function Payments(props) {
   return (
     <View style={styles.mainView}>
       <Text style={[styles.title, { marginBottom: 35 }]}>
-        Faça um pagamento
+        Faça uma transferência
       </Text>
       <View style={styles.textView}>
-        <Text style={styles.text}>Entre com o código de barras</Text>
+        <Text style={[styles.text, { width: 120 }]}>
+          Conta para transferência
+        </Text>
         <TextInput
           placeholder="password"
-          style={styles.inputField}
+          style={[styles.inputField, { width: 150 }]}
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
         />
+      </View>
+      <View style={styles.textView}>
+        <Text style={[styles.text, { width: 120 }]}>Agência bancária</Text>
         <TextInput
           placeholder="password"
-          style={styles.inputField}
+          style={[styles.inputField, { width: 90, marginRight: 70 }]}
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
         />
@@ -75,6 +80,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  textView: { flexDirection: "row" },
   dateTimePicker: { marginTop: 30 },
   inputField: {
     margin: 10,
@@ -122,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Payments;
+export default Transfers;

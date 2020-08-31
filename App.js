@@ -8,13 +8,14 @@ import Payments from "./Payments";
 import Balance from "./Balance";
 import { Link } from "@react-navigation/native";
 import MonthDropDown from "./MonthDropDown";
+import Transfers from "./Transfers";
 export default function App(props) {
   let user = {
     balance: "200,00",
     name: "André Aragon",
     cpf: "314.159.265-35",
   };
-  return <Payments user={user} />;
+  return <Transfers user={user} />;
 }
 
 const styles = StyleSheet.create({
