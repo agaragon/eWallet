@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 
 function Login(props) {
-  let [userName, changeUsersName] = useState("");
+  let [usersName, changeUsersName] = useState("");
   let [usersPassword, changeUsersPassword] = useState("");
   return (
     <View style={styles.mainView}>
@@ -47,6 +47,8 @@ function Login(props) {
         style={styles.btnView}
         onPress={() => {
           props.navigation.navigate("Home");
+          // props.dispatch({ type: "LOGIN", usersName: usersName, usersPassword });
+          props.dispatch({ type: "LOGIN" });
         }}
       >
         <Text style={styles.btnText}>Accesse sua conta</Text>
@@ -55,7 +57,10 @@ function Login(props) {
       <TouchableOpacity style={styles.btnView}>
         <Text
           style={styles.btnText}
-          onPress={() => props.navigation.navigate("Registration")}
+          onPress={() => {
+            props.navigation.navigate("Registration");
+            props.dispatch({ type: "SEND_SMS" });
+          }}
         >
           Registre-se com o seu telefone
         </Text>

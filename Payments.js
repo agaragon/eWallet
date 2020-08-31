@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import {
   StyleSheet,
@@ -63,7 +64,7 @@ function Payments(props) {
         )}
       </View>
       <Text style={styles.title}>
-        Data do pagamento: {date.getDay()}/{date.getMonth()}/
+        Data do pagamento: {date.getDate()}/{date.getMonth()}/
         {date.getFullYear()}
       </Text>
       <TouchableOpacity style={styles.btnView}>
@@ -133,4 +134,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Payments;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+export default connect(mapStateToProps)(Payments);

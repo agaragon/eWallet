@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-function Login() {
+function Login(props) {
   let textInput1;
   let textInput2;
   let textInput3;
@@ -30,7 +30,7 @@ function Login() {
             ref={(input) => {
               textInput1 = input;
             }}
-            onSubmitEditing={() => textInput2.focus()}
+            onChange={() => textInput2.focus()}
           />
 
           <View
@@ -48,7 +48,7 @@ function Login() {
             ref={(input) => {
               textInput2 = input;
             }}
-            onSubmitEditing={() => textInput3.focus()}
+            onChange={() => textInput3.focus()}
           />
 
           <View
@@ -66,7 +66,7 @@ function Login() {
             ref={(input) => {
               textInput3 = input;
             }}
-            onSubmitEditing={() => textInput4.focus()}
+            onChange={() => textInput4.focus()}
           />
 
           <View
@@ -79,7 +79,12 @@ function Login() {
           ></View>
         </View>
         <View>
-          <TextInput style={styles.number} />
+          <TextInput
+            style={styles.number}
+            ref={(input) => {
+              textInput4 = input;
+            }}
+          />
 
           <View
             style={{

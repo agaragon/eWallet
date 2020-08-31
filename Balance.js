@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
 import Navbar from "./Navbar";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import MonthDropDown from "./MonthDropDown";
-import YearDropdown from "./YearDropdown";
 import {
   faCashRegister,
   faMoneyBillAlt,
@@ -64,8 +63,7 @@ function Balance(props) {
               />
             )}
             <Text style={styles.title}>
-              Data da transferência: {date.getDay()}/{date.getMonth()}/
-              {date.getFullYear()}
+              Mês da Consulta: {date.getMonth()}/{date.getFullYear()}
             </Text>
             <TouchableOpacity
               style={[styles.btnView]}
@@ -132,4 +130,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Balance;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+export default connect(mapStateToProps)(Balance);

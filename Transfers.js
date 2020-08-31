@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import {
   StyleSheet,
@@ -67,7 +68,7 @@ function Transfers(props) {
         )}
       </View>
       <Text style={styles.title}>
-        Data da transferência: {date.getDay()}/{date.getMonth()}/
+        Data da transferência: {date.getDate()}/{date.getMonth()}/
         {date.getFullYear()}
       </Text>
 
@@ -140,4 +141,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Transfers;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+export default connect(mapStateToProps)(Transfers);

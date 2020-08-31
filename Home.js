@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -10,8 +11,9 @@ import {
 function Home(props) {
   return (
     <View style={styles.mainView}>
-      <Text style={styles.title}>Bem Vindo {props.user?.name}!</Text>
-      <Text style={styles.text}>O seu saldo é R$ {props.user?.balance}</Text>
+      <Text style={styles.title}>Bem Vindo {props.user.name}!</Text>
+      <Text style={styles.text}>O seu saldo é R$ {props.user.balance}</Text>
+
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
@@ -31,9 +33,11 @@ function Home(props) {
       <TouchableOpacity style={styles.btnView}>
         <Text
           style={styles.btnText}
-          onPress={() => props.navigation.navigate("Payments")}
+          onPress={() => {
+            props.navigation.navigate("Payments");
+          }}
         >
-          Pague uma conta{" "}
+          Pague uma conta
         </Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faMoneyBillAlt} />
       </TouchableOpacity>
@@ -91,5 +95,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
 });
-
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+export default connect(mapStateToProps)(Home);

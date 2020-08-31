@@ -3,7 +3,7 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import store from "./store";
+// import store from "./store";
 import { StyleSheet } from "react-native";
 import Login from "./Login";
 import Home from "./Home";
@@ -14,6 +14,9 @@ import { Provider } from "react-redux";
 import { Link } from "@react-navigation/native";
 import Transfers from "./Transfers";
 import "react-native-gesture-handler";
+import configureStore from "./configureStore";
+const { persistor, store } = configureStore();
+
 export default function App(props) {
   let user = {
     balance: "200,00",
