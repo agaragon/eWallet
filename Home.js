@@ -12,19 +12,32 @@ function Home(props) {
     <View style={styles.mainView}>
       <Text style={styles.title}>Bem Vindo {props.user?.name}!</Text>
       <Text style={styles.text}>O seu saldo é R$ {props.user?.balance}</Text>
-      <TouchableOpacity style={styles.btnView}>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => {
+          props.navigation.navigate("Balance");
+        }}
+      >
         <Text style={styles.btnText}>Acesse aqui o seu extrato</Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faPiggyBank} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.btnView}>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => props.navigation.navigate("Transfers")}
+      >
         <Text style={styles.btnText}>Faça uma transferência</Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faCashRegister} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.btnView}>
-        <Text style={styles.btnText}>Pague uma conta </Text>
+        <Text
+          style={styles.btnText}
+          onPress={() => props.navigation.navigate("Payments")}
+        >
+          Pague uma conta{" "}
+        </Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faMoneyBillAlt} />
       </TouchableOpacity>
-      <Navbar user={props.user} />
+      <Navbar user={props.user} navigation={props.navigation} />
     </View>
   );
 }

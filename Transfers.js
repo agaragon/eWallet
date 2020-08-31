@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
@@ -12,7 +19,6 @@ function Transfers(props) {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === "ios");
     setDate(currentDate);
-    console.log(typeof date);
   };
 
   const showDatepicker = () => {
@@ -44,13 +50,12 @@ function Transfers(props) {
           selectTextOnFocus={false}
         />
       </View>
-      <View>
-        <View style={styles.dateTimePicker}>
-          <Button
-            onPress={showDatepicker}
-            title="Escolha uma data para a sua transferência"
-          />
-        </View>
+      <View style={{ marginTop: 20 }}>
+        <TouchableOpacity style={styles.btnView}>
+          <Text style={styles.btnText} onPress={showDatepicker}>
+            Escolha uma data para sua transferência
+          </Text>
+        </TouchableOpacity>
         {show && (
           <DateTimePicker
             testID="dateTimePicker"
@@ -66,8 +71,16 @@ function Transfers(props) {
         Data da transferência: {date.getDay()}/{date.getMonth()}/
         {date.getFullYear()}
       </Text>
-      <Button title="Confirme sua transferência" />
-      <Navbar user={props.user} />
+
+      <TouchableOpacity style={styles.btnView}>
+        <Text
+          style={styles.btnText}
+          onPress={() => props.navigation.navigate("Home")}
+        >
+          Confirme sua transferência
+        </Text>
+      </TouchableOpacity>
+      <Navbar user={props.user} navigation={props.navigation} />
     </View>
   );
 }

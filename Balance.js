@@ -1,7 +1,7 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
 import Navbar from "./Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import MonthDropDown from "./MonthDropDown";
 import YearDropdown from "./YearDropdown";
 import {
@@ -12,12 +12,26 @@ import {
 import Title from "./Title";
 
 function Balance(props) {
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
+  };
+
+  const showDatepicker = () => {
+    setShow(true);
+  };
+
   let titleContent = "Qual mês você gostaria de consultar?";
   return (
     <View style={[styles.mainView, { flexDirection: "column-reverse" }]}>
       <View
         style={{
-          width: 150,
+          marginTop: 120,
+          width: 300,
           position: "absolute",
           top: 120,
           justifyContent: "center",
@@ -27,25 +41,42 @@ function Balance(props) {
         <Title content={titleContent} />
         <View
           style={{
-            marginTop: 120,
+            // marginTop: 120,
             flexDirection: "row",
             justifyContent: "space-around",
             width: 300,
           }}
         >
-          <MonthDropDown />
-          <YearDropdown />
+          <View style={{ flexDirection: "column", alignItems: "center" }}>
+            <TouchableOpacity style={[styles.btnView]}>
+              <Text style={styles.btnText} onPress={showDatepicker}>
+                Escolha uma data para a sua consulta
+              </Text>
+            </TouchableOpacity>
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={"date"}
+                is24Hour={true}
+                display="default"
+                onChange={onChange}
+              />
+            )}
+            <Text style={styles.title}>
+              Data da transferência: {date.getDay()}/{date.getMonth()}/
+              {date.getFullYear()}
+            </Text>
+            <TouchableOpacity
+              style={[styles.btnView]}
+              onPress={() => props.navigation.navigate("Home")}
+            >
+              <Text style={styles.btnText}>Faça sua consulta</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <TouchableOpacity
-          style={[
-            styles.btnView,
-            { top: 300, position: "absolute", zIndex: -1, marginTop: 100 },
-          ]}
-        >
-          <Text style={styles.btnText}>Faça sua consulta</Text>
-        </TouchableOpacity>
       </View>
-      <Navbar user={props.user} />
+      <Navbar user={props.user} navigation={props.navigation} />
     </View>
   );
 }
@@ -57,6 +88,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  title: {
+    color: primaryColor,
+    fontSize: 35,
+    textAlign: "center",
+    marginBottom: 20,
   },
   btnView: {
     justifyContent: "center",

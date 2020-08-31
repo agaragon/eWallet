@@ -29,7 +29,12 @@ function Navbar(props) {
           <View>
             <Text style={styles.dropdownText}>Nome: {props.user?.name}</Text>
             <Text style={styles.dropdownText}>CPF: {props.user?.cpf}</Text>
-            <TouchableOpacity style={styles.logoutView}>
+            <TouchableOpacity
+              style={styles.logoutView}
+              onPress={() => {
+                props.navigation.navigate("Login");
+              }}
+            >
               <Text style={styles.dropdownText}>Deslogar</Text>
               <FontAwesomeIcon
                 style={styles.signoutIcon}

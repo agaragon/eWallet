@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-function Login() {
+function Login(props) {
   return (
     <View style={styles.mainView}>
       <Image
@@ -30,12 +30,20 @@ function Login() {
           selectTextOnFocus={false}
         />
       </View>
-      <TouchableOpacity style={styles.btnView1}>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => props.navigation.navigate("Home")}
+      >
         <Text style={styles.btnText}>Accesse sua conta</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btnView2}>
-        <Text style={styles.btnText}>Registre-se com o seu telefone</Text>
+      <TouchableOpacity style={styles.btnView}>
+        <Text
+          style={styles.btnText}
+          onPress={() => props.navigation.navigate("Registration")}
+        >
+          Registre-se com o seu telefone
+        </Text>
       </TouchableOpacity>
       <Image
         style={styles.walletLogo}
@@ -76,22 +84,12 @@ const styles = StyleSheet.create({
     marginTop: -5,
     marginBottom: 20,
   },
-  btnView1: {
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 15,
-    marginTop: 15,
-    width: 170,
-    height: 50,
-    backgroundColor: "#3caea3",
-    padding: 0,
-  },
-  btnView2: {
+
+  btnView: {
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
     marginTop: 10,
-    // marginBottom: -50,
     width: 170,
     height: 50,
     backgroundColor: "#3caea3",
