@@ -15,11 +15,10 @@ export default function App(props) {
   };
   return (
     <View>
-      {/* <Login /> */}
+      <Login />
       {/* <Home user={user} /> */}
 
-      <Balance user={user} />
-      {/* <MonthDropDown /> */}
+      {/* <Balance user={user} /> */}
       {/* <Navbar user={user} /> */}
       {/* <Navigator
         initialRoute={{ title: "Awesome Scene", index: 0 }}

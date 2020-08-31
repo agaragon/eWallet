@@ -10,7 +10,6 @@ import {
 function Home(props) {
   return (
     <View style={styles.mainView}>
-      <Navbar user={props.user} />
       <Text style={styles.title}>Bem Vindo {props.user?.name}!</Text>
       <Text style={styles.text}>O seu saldo é R$ {props.user?.balance}</Text>
       <TouchableOpacity style={styles.btnView}>
@@ -25,6 +24,7 @@ function Home(props) {
         <Text style={styles.btnText}>Pague uma conta </Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faMoneyBillAlt} />
       </TouchableOpacity>
+      <Navbar user={props.user} />
     </View>
   );
 }
@@ -76,17 +76,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
-  },
-  walletLogo: {
-    width: 180,
-    height: 180,
-    resizeMode: "contain",
-    marginBottom: -100,
-  },
-  serasaLogo: {
-    width: 160,
-    height: 160,
-    resizeMode: "contain",
+    paddingTop: 400,
   },
 });
 

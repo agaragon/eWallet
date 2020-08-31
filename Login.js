@@ -15,9 +15,7 @@ function Login() {
         style={styles.serasaLogo}
         source={require("./assets/serasa-logo.jpg")}
       />
-      <View>
-        <Text style={styles.title}>Acesse aqui sua carteira eletrônica!</Text>
-      </View>
+      <Text style={styles.title}>Acesse aqui sua carteira eletrônica!</Text>
       <View>
         <Text style={styles.text}>Coloque seu Login</Text>
         <TextInput style={styles.inputField} />
@@ -31,7 +29,6 @@ function Login() {
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
           autoFocus={false}
-          onFocus="none"
         />
       </View>
       <TouchableOpacity style={styles.btnView}>
@@ -71,6 +68,7 @@ const styles = StyleSheet.create({
     color: primaryColor,
     fontSize: 25,
     textAlign: "center",
+    marginTop: -50,
     marginBottom: 20,
   },
   btnView: {
@@ -92,21 +90,19 @@ const styles = StyleSheet.create({
   mainView: {
     backgroundColor: "#3689b2",
     alignItems: "center",
-    justifyContent: "center",
     flex: 1,
+    paddingTop: 100,
   },
   walletLogo: {
     width: 180,
     height: 180,
     resizeMode: "contain",
-    marginBottom: -100,
+    // marginBottom: -100,
   },
   serasaLogo: {
     width: 260,
     height: 260,
     resizeMode: "contain",
-    marginTop: -160,
-    marginBottom: -70,
   },
 });
 
