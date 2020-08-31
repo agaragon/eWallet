@@ -28,7 +28,6 @@ function Login() {
           secureTextEntry={true}
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
-          autoFocus={false}
         />
       </View>
       <TouchableOpacity style={styles.btnView1}>
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   textView2: {
-    marginTop: 60,
+    marginTop: 20,
   },
   inputField: {
     height: 30,
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
-    margin: 70,
+    marginTop: 15,
     width: 170,
     height: 50,
     backgroundColor: "#3caea3",
@@ -91,7 +90,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
-    margin: -50,
+    marginTop: 10,
+    // marginBottom: -50,
     width: 170,
     height: 50,
     backgroundColor: "#3caea3",
@@ -110,13 +110,13 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
   walletLogo: {
-    marginTop: 50,
     width: 180,
     height: 180,
     resizeMode: "contain",
   },
   serasaLogo: {
-    margin: -50,
+    margin: -100,
+    marginBottom: -40,
     width: 260,
     height: 260,
     resizeMode: "contain",

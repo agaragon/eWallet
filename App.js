@@ -14,25 +14,8 @@ export default function App(props) {
     cpf: "314.159.265-35",
   };
   return (
-    <View>
-      <Login />
-      {/* <Home user={user} /> */}
-
-      {/* <Balance user={user} /> */}
-      {/* <Navbar user={user} /> */}
-      {/* <Navigator
-        initialRoute={{ title: "Awesome Scene", index: 0 }}
-        renderScene={(route, navigator) => <Text>Hello {route.title}!</Text>}
-      /> */}
-      {/* <View>
-        <Text>Login</Text>
-        <TextInput placeholder="What is your user name?" />
-      </View>
-      <View>
-        <Text>Senha</Text>
-        <TextInput placeholder="Write your password here!" />
-      </View> */}
-    </View>
+    <Login user={user} />
+    // <Home user={user} />
   );
 }
 
