@@ -64,7 +64,6 @@ function Transfers(props) {
         <Text style={[styles.text, { width: 120 }]}>
           Valor da transferência
         </Text>
-        {/* <TextInputMask */}
         <TextInput
           style={[
             styles.inputField,
@@ -106,14 +105,14 @@ function Transfers(props) {
         )}
       </View>
       <Text style={styles.title}>
-        Data da transferência: {date.getDate()}/{date.getMonth()}/
+        Data da transferência: {date.getDate()}/{date.getMonth() + 1}/
         {date.getFullYear()}
       </Text>
 
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          console.log(transferAccount);
+          // console.log(transferAccount);
           props.dispatch({
             type: "TRANSFER_MONEY",
             amount: transferValue,

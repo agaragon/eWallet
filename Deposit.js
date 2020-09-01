@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import { TextInputMask } from "react-native-masked-text";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
+import NumberFormat from "react-number-format";
 
 function Deposit(props) {
-  const [transferValue, changeTransferValue] = useState(0);
+  const [depositValue, changeDepositValue] = useState(0);
 
   return (
     <View style={styles.mainView}>
@@ -13,26 +20,39 @@ function Deposit(props) {
 
       <View style={styles.textView}>
         <Text style={[styles.text, { width: 120 }]}>Valor do depósito</Text>
-        <TextInputMask
+
+        <TextInput
           style={[
             styles.inputField,
-            { width: 200, marginRight: 70, fontSize: 25 },
+            { width: 90, marginRight: 70, fontSize: 25 },
           ]}
-          type={"money"}
-          value={transferValue}
           onChangeText={(text) => {
-            text = text.replace("R$", "").replace(".", "").replace(",", ".");
-            changeTransferValue(text);
+            text = parseFloat(
+              text.replace("R$", "").replace(".", "").replace(",", ".")
+            );
+            changeDepositValue(text);
+            props.dispatch({
+              type: "CHANGE_DEPOSIT_VALUE",
+              amount: text,
+            });
           }}
         />
       </View>
+      <NumberFormat
+        value={depositValue}
+        displayType={"text"}
+        thousandSeparator={true}
+        prefix={"R$"}
+        renderText={(text) => (
+          <Text style={styles.text}>O valor da depósito é {text}</Text>
+        )}
+      />
       <View style={{ marginTop: 20 }}></View>
 
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          props.dispatch({ type: "GENERATE_BILL", amount: transferValue });
-          props.navigation.navigate("Home");
+          props.navigation.navigate("ConfirmPayment");
         }}
       >
         <Text style={styles.btnText}>Gere um boleto para depósito</Text>
@@ -109,6 +129,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    deposit: state.user,
   };
 };
 export default connect(mapStateToProps)(Deposit);

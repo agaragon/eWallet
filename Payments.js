@@ -6,7 +6,6 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
 } from "react-native";
 
@@ -64,7 +63,7 @@ function Payments(props) {
         )}
       </View>
       <Text style={styles.title}>
-        Data do pagamento: {date.getDate()}/{date.getMonth()}/
+        Data do pagamento: {date.getDate()}/{date.getMonth() + 1}/
         {date.getFullYear()}
       </Text>
       <TouchableOpacity

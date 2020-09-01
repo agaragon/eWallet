@@ -12,14 +12,30 @@ function* getUsersData(action) {
     name: "André Guimarães Aragon",
     cpf: "094.991.069-43",
     balance: 124323.25,
+    toAccount: "18960-0",
+    toAgency: "01",
   };
-  yield put({ type: "GET_USER_INFO", user: user });
+  const transactions = [];
+  yield put({ type: "GET_USER_INFO", user: user, transactions: transactions });
 }
 function* registerUser(action) {
   console.log("SMS Sent");
 }
 function* checkSMS(action) {
   console.log(`Message Checked your input was ${action.input}`);
+}
+function* makeDeposit(action) {
+  yield all([
+    put({ type: "MAKE_DEPOSIT", amount: action.amount }),
+    put({
+      type: "ADD_TRANSACTION_INFO",
+      amount: parseFloat(action.amount),
+      account: action.account,
+      date: action.date,
+      agency: action.agency,
+      typeOfTransaction: "Depósito",
+    }),
+  ]);
 }
 function* transferMoney(action) {
   console.log(action.account);
@@ -31,6 +47,7 @@ function* transferMoney(action) {
       account: action.account,
       date: action.date,
       agency: action.agency,
+      typeOfTransaction: "Transferência",
     }),
   ]);
 }
@@ -73,4 +90,7 @@ export function* sagaMakeQuery() {
 }
 export function* sagaMoneyTransfer() {
   yield takeLatest("TRANSFER_MONEY", transferMoney);
+}
+export function* sagaMakeDeposit() {
+  yield takeLatest("SAGA_MAKE_DEPOSIT", makeDeposit);
 }

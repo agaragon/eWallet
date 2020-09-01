@@ -1,4 +1,5 @@
 const initialState = {
+  depositValue: 0,
   user: {
     name: "",
     cpf: "",
@@ -32,6 +33,7 @@ export default function reducer(state = initialState, action) {
     case "GET_USER_INFO":
       return {
         ...state,
+        transactions: action.transactions,
         user: action.user,
       };
     case "SAVE_BILL_INFO":
@@ -39,11 +41,27 @@ export default function reducer(state = initialState, action) {
         ...state,
         bill: action.bill,
       };
+    case "CHANGE_DEPOSIT_VALUE":
+      return {
+        ...state,
+        amount: action.amount,
+      };
     case "MONEY_TRANSFERED":
       newUser = { ...state.user };
-      console.log(`The user before the transfer had ${state.user.balance}`);
-      newUser.balance = state.user.balance - action.amount;
-      console.log(`The user after the transfer had ${newUser.balance}`);
+      // console.log(`The user before the transfer had ${state.user.balance}`);
+      newUser.balance =
+        parseFloat(state.user.balance) - parseFloat(action.amount);
+      // console.log(`The user after the transfer had ${newUser.balance}`);
+      return {
+        ...state,
+        user: { ...newUser },
+      };
+    case "MAKE_DEPOSIT":
+      newUser = { ...state.user };
+      console.log(`The user before the deposit had ${state.user.balance}`);
+      newUser.balance =
+        parseFloat(state.user.balance) + parseFloat(action.amount);
+      console.log(`The user after the depoist has ${newUser.balance}`);
       return {
         ...state,
         user: { ...newUser },
@@ -51,10 +69,11 @@ export default function reducer(state = initialState, action) {
     case "ADD_TRANSACTION_INFO":
       newTransactions = [...state.transactions];
       newTransactions.push({
-        time: action.date,
+        date: action.date,
         value: action.amount,
         toAccount: action.account,
         toAgency: action.agency,
+        typeOfTransaction: action.typeOfTransaction,
       });
       return {
         ...state,

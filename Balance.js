@@ -64,8 +64,7 @@ function Balance(props) {
             <TouchableOpacity
               style={[styles.btnView]}
               onPress={() => {
-                console.log(props.transactions);
-                props.navigation.navigate("Home");
+                props.navigation.navigate("BalanceData");
                 props.dispatch({ type: "BILL_QUERY", date: date });
               }}
             >
