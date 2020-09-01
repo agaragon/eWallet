@@ -33,8 +33,20 @@ function Payments(props) {
       </Text>
       <View style={styles.textView}>
         <Text style={styles.text}>Entre com o código de barras</Text>
-        <TextInput style={styles.inputField} selectTextOnFocus={false} />
-        <TextInput style={styles.inputField} selectTextOnFocus={false} />
+        <TextInput
+          style={styles.inputField}
+          selectTextOnFocus={false}
+          onChangeText={(text) => {
+            changeFirstInput(text);
+          }}
+        />
+        <TextInput
+          style={styles.inputField}
+          selectTextOnFocus={false}
+          onChangeText={(text) => {
+            changeSecondInput(text);
+          }}
+        />
       </View>
       <View>
         <TouchableOpacity style={styles.btnView} onPress={showDatepicker}>
@@ -59,7 +71,10 @@ function Payments(props) {
       </Text>
       <TouchableOpacity
         style={styles.btnView}
-        onPress={() => props.navigation.navigate("Home")}
+        onPress={() => {
+          // props.dispatch({type})
+          props.navigation.navigate("Home");
+        }}
       >
         <Text style={styles.btnText}>Confirme seu pagamento</Text>
       </TouchableOpacity>
