@@ -10,6 +10,7 @@ import Home from "./Home";
 import Payments from "./Payments";
 import Balance from "./Balance";
 import Registration from "./Registration";
+import Deposit from "./Deposit";
 import { Provider } from "react-redux";
 import Transfers from "./Transfers";
 import "react-native-gesture-handler";
@@ -36,6 +37,7 @@ export default function App(props) {
           <Stack.Screen name="Transfers" component={Transfers} />
           <Stack.Screen name="Payments" component={Payments} />
           <Stack.Screen name="Registration" component={Registration} />
+          <Stack.Screen name="Deposit" component={Deposit} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

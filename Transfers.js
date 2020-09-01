@@ -9,13 +9,15 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-
+import NumberFormat from "react-number-format";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 function Transfers(props) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
   const [transferValue, changeTransferValue] = useState(0);
+  const [transferAccount, changeTransferAccount] = useState("");
+  const [transferAgency, changeTransferAgency] = useState("");
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -37,34 +39,57 @@ function Transfers(props) {
           Conta para transferência
         </Text>
         <TextInput
-          placeholder="password"
-          style={[styles.inputField, { width: 150 }]}
-          placeholderTextColor="rgba(255, 255, 255, 0.3)"
+          style={[styles.inputField, { width: 150, fontSize: 25 }]}
           selectTextOnFocus={false}
+          onChange={(text) => {
+            changeTransferAccount(text);
+          }}
         />
       </View>
       <View style={styles.textView}>
         <Text style={[styles.text, { width: 120 }]}>Agência bancária</Text>
         <TextInput
-          style={[styles.inputField, { width: 90, marginRight: 70 }]}
+          style={[
+            styles.inputField,
+            { width: 90, marginRight: 70, fontSize: 25 },
+          ]}
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
+          onChange={(text) => {
+            changeTransferAgency(text);
+          }}
         />
       </View>
       <View style={styles.textView}>
         <Text style={[styles.text, { width: 120 }]}>
           Valor da transferência
         </Text>
-        <TextInputMask
-          style={[styles.inputField, { width: 90, marginRight: 70 }]}
-          type={"money"}
-          value={transferValue}
+        {/* <TextInputMask */}
+        <TextInput
+          style={[
+            styles.inputField,
+            { width: 90, marginRight: 70, fontSize: 25 },
+          ]}
+          // value={transferValue}
           onChangeText={(text) => {
-            text = text.replace("R$", "").replace(".", "").replace(",", ".");
+            console.log(text);
+            text = parseFloat(
+              text.replace("R$", "").replace(".", "").replace(",", ".")
+            );
             changeTransferValue(text);
+            console.log(text);
           }}
         />
       </View>
+      <NumberFormat
+        value={transferValue}
+        displayType={"text"}
+        thousandSeparator={true}
+        prefix={"R$"}
+        renderText={(text) => (
+          <Text style={styles.text}>O valor da transferência é {text}</Text>
+        )}
+      />
       <View style={{ marginTop: 20 }}>
         <TouchableOpacity style={styles.btnView} onPress={showDatepicker}>
           <Text style={styles.btnText} onPress={showDatepicker}>
@@ -89,9 +114,26 @@ function Transfers(props) {
 
       <TouchableOpacity
         style={styles.btnView}
-        onPress={() => props.navigation.navigate("Home")}
+        onPress={() => {
+          props.dispatch({
+            type: "TRANSFER_MONEY",
+            amount: transferValue,
+            date: date,
+            account: transferAccount,
+            agency: transferAgency,
+          });
+          props.navigation.navigate("Home");
+        }}
       >
         <Text style={styles.btnText}>Confirme sua transferência</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => {
+          props.navigation.navigate("Home");
+        }}
+      >
+        <Text style={styles.btnText}>Retorne ao menu principal</Text>
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>

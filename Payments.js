@@ -73,6 +73,14 @@ function Payments(props) {
       >
         <Text style={styles.btnText}>Confirme seu pagamento</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => {
+          props.navigation.navigate("Home");
+        }}
+      >
+        <Text style={styles.btnText}>Retorne ao menu principal</Text>
+      </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>
   );

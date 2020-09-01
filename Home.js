@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faCashRegister,
   faMoneyBillAlt,
   faPiggyBank,
+  faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 import NumberFormat from "react-number-format";
 function Home(props) {
@@ -14,12 +15,12 @@ function Home(props) {
     <View style={styles.mainView}>
       <Text style={styles.title}>Bem Vindo {props.user.name}!</Text>
       <NumberFormat
-        value={12312312312.55}
+        value={props.user.balance.toFixed(2)}
         displayType={"text"}
         thousandSeparator={true}
         prefix={"R$"}
-        renderText={(formattedValue) => (
-          <Text style={styles.text}>O seu saldo é {formattedValue}</Text>
+        renderText={(text) => (
+          <Text style={styles.text}>O seu saldo é {text}</Text>
         )}
       />
       <TouchableOpacity
@@ -46,6 +47,15 @@ function Home(props) {
       >
         <Text style={styles.btnText}>Pague uma conta</Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faMoneyBillAlt} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => {
+          props.navigation.navigate("Deposit");
+        }}
+      >
+        <Text style={styles.btnText}>Faça um depósito</Text>
+        <FontAwesomeIcon size={40} color="#c3f2fc" icon={faCoins} />
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>

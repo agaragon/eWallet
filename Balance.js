@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import NumberFormat from "react-number-format";
 import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
 import Navbar from "./Navbar";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import {
-  faCashRegister,
-  faMoneyBillAlt,
-  faPiggyBank,
-} from "@fortawesome/free-solid-svg-icons";
 import Title from "./Title";
 
 function Balance(props) {
@@ -70,18 +64,20 @@ function Balance(props) {
             <TouchableOpacity
               style={[styles.btnView]}
               onPress={() => {
+                console.log(props.transactions);
                 props.navigation.navigate("Home");
                 props.dispatch({ type: "BILL_QUERY", date: date });
               }}
             >
-              <Text
-                style={styles.btnText}
-                // onPress={() => {
-                //   props.dispatch({ type: "BILL_QUERY", date: date });
-                // }}
-              >
-                Faça sua consulta
-              </Text>
+              <Text style={styles.btnText}>Faça sua consulta</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btnView}
+              onPress={() => {
+                props.navigation.navigate("Home");
+              }}
+            >
+              <Text style={styles.btnText}>Retorne ao menu principal</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -145,6 +141,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    transactions: state.transactions,
   };
 };
 export default connect(mapStateToProps)(Balance);
