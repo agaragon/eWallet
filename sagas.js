@@ -22,6 +22,7 @@ function* checkSMS(action) {
   console.log(`Message Checked your input was ${action.input}`);
 }
 function* transferMoney(action) {
+  console.log(action.account);
   yield all([
     put({ type: "MONEY_TRANSFERED", amount: parseFloat(action.amount) }),
     put({

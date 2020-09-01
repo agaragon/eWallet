@@ -41,7 +41,7 @@ function Transfers(props) {
         <TextInput
           style={[styles.inputField, { width: 150, fontSize: 25 }]}
           selectTextOnFocus={false}
-          onChange={(text) => {
+          onChangeText={(text) => {
             changeTransferAccount(text);
           }}
         />
@@ -55,7 +55,7 @@ function Transfers(props) {
           ]}
           placeholderTextColor="rgba(255, 255, 255, 0.3)"
           selectTextOnFocus={false}
-          onChange={(text) => {
+          onChangeText={(text) => {
             changeTransferAgency(text);
           }}
         />
@@ -72,12 +72,10 @@ function Transfers(props) {
           ]}
           // value={transferValue}
           onChangeText={(text) => {
-            console.log(text);
             text = parseFloat(
               text.replace("R$", "").replace(".", "").replace(",", ".")
             );
             changeTransferValue(text);
-            console.log(text);
           }}
         />
       </View>
@@ -115,6 +113,7 @@ function Transfers(props) {
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
+          console.log(transferAccount);
           props.dispatch({
             type: "TRANSFER_MONEY",
             amount: transferValue,

@@ -53,7 +53,7 @@ export default function reducer(state = initialState, action) {
       newTransactions.push({
         time: action.date,
         value: action.amount,
-        toAccount: action.acount,
+        toAccount: action.account,
         toAgency: action.agency,
       });
       return {
