@@ -6,7 +6,7 @@ import NumberFormat from "react-number-format";
 
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-function ConfirmPayment(props) {
+function ConfirmDeposit(props) {
   return (
     <View style={styles.mainView}>
       <NumberFormat
@@ -26,7 +26,8 @@ function ConfirmPayment(props) {
         onPress={() => {
           console.log(`ConfirmDeposit ${props.amount}`);
           props.dispatch({
-            type: "SAGA_PAY_BILL",
+            type: "SAGA_MAKE_DEPOSIT",
+            amount: parseFloat(props.amount),
             account: props.user.toAccount,
             agency: props.user.toAgency,
             date: new Date(),
@@ -41,7 +42,7 @@ function ConfirmPayment(props) {
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          props.navigation.navigate("ConfirmPayment");
+          props.navigation.navigate("Home");
         }}
       >
         <Text style={styles.btnText}>Não gerar boleto.</Text>
@@ -97,4 +98,4 @@ const mapStateToProps = (state) => {
     amount: state.amount,
   };
 };
-export default connect(mapStateToProps)(ConfirmPayment);
+export default connect(mapStateToProps)(ConfirmDeposit);

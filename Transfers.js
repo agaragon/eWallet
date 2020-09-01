@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexGrow: 1,
+    paddingTop: 50,
   },
 });
 

@@ -14,7 +14,8 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 function Payments(props) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
-
+  const [firstInput, changeFirstInput] = useState("");
+  const [secondInput, changeSecondInput] = useState("");
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === "ios");
@@ -32,18 +33,8 @@ function Payments(props) {
       </Text>
       <View style={styles.textView}>
         <Text style={styles.text}>Entre com o código de barras</Text>
-        <TextInput
-          placeholder="password"
-          style={styles.inputField}
-          placeholderTextColor="rgba(255, 255, 255, 0.3)"
-          selectTextOnFocus={false}
-        />
-        <TextInput
-          placeholder="password"
-          style={styles.inputField}
-          placeholderTextColor="rgba(255, 255, 255, 0.3)"
-          selectTextOnFocus={false}
-        />
+        <TextInput style={styles.inputField} selectTextOnFocus={false} />
+        <TextInput style={styles.inputField} selectTextOnFocus={false} />
       </View>
       <View>
         <TouchableOpacity style={styles.btnView} onPress={showDatepicker}>

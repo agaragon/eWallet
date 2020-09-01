@@ -52,7 +52,7 @@ function Deposit(props) {
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          props.navigation.navigate("ConfirmPayment");
+          props.navigation.navigate("ConfirmDeposit");
         }}
       >
         <Text style={styles.btnText}>Gere um boleto para depósito</Text>

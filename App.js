@@ -12,6 +12,7 @@ import Balance from "./Balance";
 import Registration from "./Registration";
 import Deposit from "./Deposit";
 import BalanceData from "./BalanceData";
+import ConfirmDeposit from "./ConfirmDeposit";
 import ConfirmPayment from "./ConfirmPayment";
 import { Provider } from "react-redux";
 import Transfers from "./Transfers";
@@ -41,6 +42,7 @@ export default function App(props) {
           <Stack.Screen name="Registration" component={Registration} />
           <Stack.Screen name="Deposit" component={Deposit} />
           <Stack.Screen name="BalanceData" component={BalanceData} />
+          <Stack.Screen name="ConfirmDeposit" component={ConfirmDeposit} />
           <Stack.Screen name="ConfirmPayment" component={ConfirmPayment} />
         </Stack.Navigator>
       </NavigationContainer>
