@@ -9,8 +9,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import DateTimePicker from "@react-native-community/datetimepicker";
-
 function Payments(props) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
@@ -48,35 +46,18 @@ function Payments(props) {
           }}
         />
       </View>
-      <View>
-        <TouchableOpacity style={styles.btnView} onPress={showDatepicker}>
-          <Text style={styles.btnText} onPress={showDatepicker}>
-            Escolha uma data para seu pagamento
-          </Text>
-        </TouchableOpacity>
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={"date"}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-      </View>
-      <Text style={styles.title}>
-        Data do pagamento: {date.getDate()}/{date.getMonth() + 1}/
-        {date.getFullYear()}
-      </Text>
+
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          // props.dispatch({type})
-          props.navigation.navigate("Home");
+          props.dispatch({
+            type: "SAGA_ACCESS_BILL",
+            codeBar: firstInput + secondInput,
+          });
+          props.navigation.navigate("Bill");
         }}
       >
-        <Text style={styles.btnText}>Confirme seu pagamento</Text>
+        <Text style={styles.btnText}>Acesse o seu boleto</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.btnView}

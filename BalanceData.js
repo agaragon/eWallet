@@ -10,14 +10,15 @@ import {
 } from "react-native";
 import Title from "./Title";
 function BalanceData(props) {
-  let titleContent = "Suas transações";
+  let titleContentTransactions = "Suas transações";
+  let titleContentPayments = "Seus pagamentos";
   return (
     <ScrollView
       contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}
       style={styles.mainView}
     >
       <View style={{ marginTop: 150 }}>
-        <Title content={titleContent} />
+        <Title content={titleContentTransactions} />
         {props.transactions.map((transaction, index) => {
           return (
             <Title
@@ -31,6 +32,21 @@ Conta: ${transaction.toAccount}
 Agência: ${transaction.toAgency}
 Valor: R$ ${transaction.value.toFixed(2).replace(".", ",")}`}
             />
+          );
+        })}
+        <Title content={titleContentPayments} />
+        {props.payments.map((payment, index) => {
+          return (
+            <View key={index}>
+              <Title
+                content={`Valor R$${payment.amount
+                  .toFixed(2)
+                  .replace(".", ",")}`}
+              />
+              <Title
+                content={`Data do vencimento ${payment.date.getDate()}/${payment.date.getMonth()}/${payment.date.getFullYear()}`}
+              />
+            </View>
           );
         })}
         <TouchableOpacity
@@ -48,8 +64,8 @@ Valor: R$ ${transaction.value.toFixed(2).replace(".", ",")}`}
   );
 }
 
-// let primaryColor = "#173f5f";
-let primaryColor = "#111111";
+let primaryColor = "#173f5f";
+// let primaryColor = "#111111";
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
@@ -60,7 +76,6 @@ const styles = StyleSheet.create({
     color: primaryColor,
     fontSize: 35,
     textAlign: "center",
-    // marginBottom: 20,
   },
   btnView: {
     flexDirection: "row",
@@ -83,8 +98,6 @@ const styles = StyleSheet.create({
 
   mainView: {
     backgroundColor: "#3689b2",
-    // alignItems: "center",
-    // justifyContent: "center",
     flexGrow: 1,
   },
 });
@@ -93,6 +106,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     transactions: state.transactions,
+    payments: state.payments,
   };
 };
 export default connect(mapStateToProps)(BalanceData);

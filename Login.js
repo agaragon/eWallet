@@ -47,7 +47,6 @@ function Login(props) {
         style={styles.btnView}
         onPress={() => {
           props.navigation.navigate("Home");
-          // props.dispatch({ type: "LOGIN", usersName: usersName, usersPassword });
           props.dispatch({ type: "LOGIN" });
         }}
       >

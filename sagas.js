@@ -7,19 +7,43 @@ async function getUrl(req) {
 }
 
 function* getUsersData(action) {
-  //   let user = authenticate({ login: action.userName, userPassword: action.userPassword });
   const user = {
     name: "André Guimarães Aragon",
     cpf: "094.991.069-43",
-    balance: 124323.25,
+    balance: 500.0,
     toAccount: "18960-0",
     toAgency: "01",
   };
   const transactions = [];
-  yield put({ type: "GET_USER_INFO", user: user, transactions: transactions });
+  const payments = [];
+  yield put({
+    type: "GET_USER_INFO",
+    user: user,
+    transactions: transactions,
+    payments: payments,
+  });
 }
 function* registerUser(action) {
   console.log("SMS Sent");
+}
+function* accessBill(action) {
+  let bill = {
+    value: 400,
+    dueDate: new Date(),
+  };
+  yield put({
+    type: "CREATE_BILL",
+    bill: bill,
+    typeOfTransaction: "Payment",
+  });
+}
+function* payBill(action) {
+  yield put({
+    type: "PAY_BILL",
+    amount: action.amount,
+    date: action.date,
+    typeOfTransaction: "Payment",
+  });
 }
 function* checkSMS(action) {
   console.log(`Message Checked your input was ${action.input}`);
@@ -52,7 +76,6 @@ function* transferMoney(action) {
   ]);
 }
 function* makeQuery(action) {
-  //   let bill = getData(action.date);
   console.log(`You got the new info from day ${action.date}`);
   let bill = {
     date: "00-00-00",
@@ -93,4 +116,10 @@ export function* sagaMoneyTransfer() {
 }
 export function* sagaMakeDeposit() {
   yield takeLatest("SAGA_MAKE_DEPOSIT", makeDeposit);
+}
+export function* sagaAccessBill() {
+  yield takeLatest("SAGA_ACCESS_BILL", accessBill);
+}
+export function* sagaPayBill() {
+  yield takeLatest("SAGA_PAY_BILL", payBill);
 }

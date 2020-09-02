@@ -12,6 +12,8 @@ import {
   sagaMakeQuery,
   sagaMoneyTransfer,
   sagaMakeDeposit,
+  sagaAccessBill,
+  sagaPayBill,
 } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -31,6 +33,8 @@ export default () => {
   sagaMiddleware.run(sagaMakeQuery);
   sagaMiddleware.run(sagaMoneyTransfer);
   sagaMiddleware.run(sagaMakeDeposit);
+  sagaMiddleware.run(sagaAccessBill);
+  sagaMiddleware.run(sagaPayBill);
   let persistor = persistStore(store);
   return { store, persistor };
 };

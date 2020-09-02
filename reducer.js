@@ -6,27 +6,16 @@ const initialState = {
     balance: 0,
   },
   bill: {
-    date: "00-00-00",
-    transactions: [
-      {
-        time: "00-00-0000",
-        value: 456556.0,
-        toAccount: "18650-0",
-        toAgency: "1",
-      },
-      { time: "00-00-0000", value: 456.0, toAccount: "11234-5", toAgency: "2" },
-      {
-        time: "00-00-0000",
-        value: 123456.0,
-        toAccount: "14829-4",
-        toAgency: "3",
-      },
-    ],
+    dueDate: new Date(),
+    value: 500,
   },
   transactions: [],
+  payments: [],
 };
 
 export default function reducer(state = initialState, action) {
+  let newPayment;
+  let newPayments;
   let newUser;
   let newTransactions;
   switch (action.type) {
@@ -34,12 +23,34 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         transactions: action.transactions,
+        payments: action.payments,
         user: action.user,
       };
     case "SAVE_BILL_INFO":
       return {
         ...state,
         bill: action.bill,
+      };
+    case "CREATE_BILL":
+      return {
+        ...state,
+        bill: action.bill,
+      };
+    case "PAY_BILL":
+      newPayments = [...state.payments];
+      newPayment = {
+        date: action.date,
+        amount: action.amount,
+        typeOfTransaction: action.typeOfTransaction,
+      };
+      newPayments.push(newPayment);
+      newUser = { ...state.user };
+      newUser.balance =
+        parseFloat(state.user.balance) - parseFloat(action.amount);
+      return {
+        ...state,
+        user: { ...newUser },
+        payments: newPayments,
       };
     case "CHANGE_DEPOSIT_VALUE":
       return {
@@ -48,10 +59,8 @@ export default function reducer(state = initialState, action) {
       };
     case "MONEY_TRANSFERED":
       newUser = { ...state.user };
-      // console.log(`The user before the transfer had ${state.user.balance}`);
       newUser.balance =
         parseFloat(state.user.balance) - parseFloat(action.amount);
-      // console.log(`The user after the transfer had ${newUser.balance}`);
       return {
         ...state,
         user: { ...newUser },

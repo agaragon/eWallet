@@ -3,7 +3,6 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-// import store from "./store";
 import { StyleSheet } from "react-native";
 import Login from "./Login";
 import Home from "./Home";
@@ -11,6 +10,7 @@ import Payments from "./Payments";
 import Balance from "./Balance";
 import Registration from "./Registration";
 import Deposit from "./Deposit";
+import Bill from "./Bill";
 import BalanceData from "./BalanceData";
 import ConfirmDeposit from "./ConfirmDeposit";
 import ConfirmPayment from "./ConfirmPayment";
@@ -44,6 +44,7 @@ export default function App(props) {
           <Stack.Screen name="BalanceData" component={BalanceData} />
           <Stack.Screen name="ConfirmDeposit" component={ConfirmDeposit} />
           <Stack.Screen name="ConfirmPayment" component={ConfirmPayment} />
+          <Stack.Screen name="Bill" component={Bill} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
