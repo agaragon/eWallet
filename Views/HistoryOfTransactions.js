@@ -42,15 +42,16 @@ function HistoryOfTransactions(props) {
         >
           <View
             style={{
-              width: 200,
+              flex: 1,
               flexDirection: "row",
               justifyContent: "space-between",
               marginBottom: 30,
             }}
           >
             <Text style={[styles.text, { fontSize: 30 }]}>Data</Text>
-            {/* <Text style={styles.text}>{transaction.typeOfTransaction}</Text> */}
             <Text style={[styles.text, { fontSize: 30 }]}>Valor</Text>
+            <Text style={[styles.text, { fontSize: 30 }]}>Transação</Text>
+            <View style={{ width: 30 }}></View>
           </View>
         </View>
         {history.map((transaction, index) => {
@@ -66,7 +67,7 @@ function HistoryOfTransactions(props) {
             >
               <View
                 style={{
-                  width: 200,
+                  width: "100%",
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
@@ -78,25 +79,26 @@ function HistoryOfTransactions(props) {
                   {transaction.typeOfTransaction === "Depósito" ? "+" : "-"}R$
                   {transaction.value.toFixed(2).replace(".", ",")}
                 </Text>
-                {/* <Text>{transaction.typeOfTransaction}</Text> */}
+                <Text style={styles.text}>{transaction.typeOfTransaction}</Text>
+                <TouchableOpacity
+                  style={styles.btnView}
+                  onPress={() => {
+                    props.dispatch({
+                      type: "MORE_INFO",
+                      value: transaction.value,
+                      date: transaction.date,
+                      codeBar: transaction.codeBar,
+                      typeOfTransaction: transaction.typeOfTransaction,
+                      toAgency: transaction.toAgency,
+                      toAccount: transaction.toAccount,
+                    });
+                    props.navigation.navigate("BillInfo");
+                  }}
+                >
+                  <Text style={[styles.btnText, { fontSize: 30 }]}>+</Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                style={styles.btnView}
-                onPress={() => {
-                  props.dispatch({
-                    type: "MORE_INFO",
-                    value: transaction.value,
-                    date: transaction.date,
-                    codeBar: transaction.codeBar,
-                    typeOfTransaction: transaction.typeOfTransaction,
-                    toAgency: transaction.toAgency,
-                    toAccount: transaction.toAccount,
-                  });
-                  props.navigation.navigate("BillInfo");
-                }}
-              >
-                <Text style={[styles.btnText, { fontSize: 30 }]}>+</Text>
-              </TouchableOpacity>
+              {/* <View style={{ justifyContent: "center" }}></View> */}
             </View>
           );
         })}
