@@ -42,6 +42,7 @@ export default function reducer(state = initialState, action) {
         date: action.date,
         amount: action.amount,
         typeOfTransaction: action.typeOfTransaction,
+        codeBar: action.codeBar,
       };
       newPayments.push(newPayment);
       newUser = { ...state.user };

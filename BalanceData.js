@@ -46,11 +46,12 @@ Valor: R$ ${transaction.value.toFixed(2).replace(".", ",")}`}
               <Title
                 content={`Data do vencimento ${payment.date.getDate()}/${payment.date.getMonth()}/${payment.date.getFullYear()}`}
               />
+              <Title content={`Código de barras: ${payment.codeBar}`} />
             </View>
           );
         })}
         <TouchableOpacity
-          style={styles.btnView}
+          style={[styles.btnView, { marginLeft: 75 }]}
           onPress={() => {
             props.navigation.navigate("Home");
           }}

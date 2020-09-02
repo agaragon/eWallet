@@ -30,6 +30,7 @@ function* accessBill(action) {
   let bill = {
     value: 400,
     dueDate: new Date(),
+    codeBar: action.codeBar,
   };
   yield put({
     type: "CREATE_BILL",
@@ -43,6 +44,7 @@ function* payBill(action) {
     amount: action.amount,
     date: action.date,
     typeOfTransaction: "Payment",
+    codeBar: action.codeBar,
   });
 }
 function* checkSMS(action) {
@@ -62,7 +64,6 @@ function* makeDeposit(action) {
   ]);
 }
 function* transferMoney(action) {
-  console.log(action.account);
   yield all([
     put({ type: "MONEY_TRANSFERED", amount: parseFloat(action.amount) }),
     put({

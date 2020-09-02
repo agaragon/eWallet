@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Title from "./Title";
+import { actionChannel } from "redux-saga/effects";
 function Bill(props) {
   let date = props.bill.dueDate;
   let titleContent = "Dados do seu boleto:";
@@ -26,6 +27,7 @@ function Bill(props) {
             type: "SAGA_PAY_BILL",
             amount: props.bill.value,
             date: props.bill.dueDate,
+            codeBar: props.bill.codeBar,
             typeOfTransaction: "Payment",
           });
           props.navigation.navigate("Home");

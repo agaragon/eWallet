@@ -14,7 +14,6 @@ function ConfirmPayment(props) {
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          console.log(`ConfirmDeposit ${props.amount}`);
           props.dispatch({
             type: "SAGA_PAY_BILL",
             account: props.user.toAccount,
@@ -42,7 +41,6 @@ function ConfirmPayment(props) {
 }
 
 let primaryColor = "#173f5f";
-// let primaryColor = "#111111";
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
