@@ -17,27 +17,39 @@ function BalanceData(props) {
       contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}
       style={styles.mainView}
     >
-      <View style={{ marginTop: 150 }}>
-        <Title content={titleContentTransactions} />
+      <View
+        style={{
+          marginTop: 150,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={styles.text}>{titleContentTransactions}</Text>
         {props.transactions.map((transaction, index) => {
           return (
-            <Title
-              style={[styles.text]}
+            <View
+              style={{ borderWidth: 1, width: 300, marginTop: 10 }}
               key={index}
-              content={`${transaction.typeOfTransaction}
+            >
+              <Title
+                content={`${transaction.typeOfTransaction}
 Data: ${transaction.date.getDate()}/${
-                transaction.date.getMonth() + 1
-              }/${transaction.date.getFullYear()}
+                  transaction.date.getMonth() + 1
+                }/${transaction.date.getFullYear()}
 Conta: ${transaction.toAccount}
 Agência: ${transaction.toAgency}
 Valor: R$ ${transaction.value.toFixed(2).replace(".", ",")}`}
-            />
+              />
+            </View>
           );
         })}
-        <Title content={titleContentPayments} />
+        <Text style={styles.text}>{titleContentPayments}</Text>
         {props.payments.map((payment, index) => {
           return (
-            <View key={index}>
+            <View
+              key={index}
+              style={{ borderWidth: 1, width: 300, marginTop: 10 }}
+            >
               <Title
                 content={`Valor R$${payment.amount
                   .toFixed(2)
@@ -46,12 +58,15 @@ Valor: R$ ${transaction.value.toFixed(2).replace(".", ",")}`}
               <Title
                 content={`Data do vencimento ${payment.date.getDate()}/${payment.date.getMonth()}/${payment.date.getFullYear()}`}
               />
-              <Title content={`Código de barras: ${payment.codeBar}`} />
+              <Title
+                content={`Código de barras:
+${payment.codeBar}`}
+              />
             </View>
           );
         })}
         <TouchableOpacity
-          style={[styles.btnView, { marginLeft: 75 }]}
+          style={[styles.btnView]}
           onPress={() => {
             props.navigation.navigate("Home");
           }}
@@ -69,7 +84,8 @@ let primaryColor = "#173f5f";
 // let primaryColor = "#111111";
 const styles = StyleSheet.create({
   text: {
-    fontSize: 20,
+    marginTop: 20,
+    fontSize: 30,
     color: primaryColor,
     textAlign: "center",
   },
