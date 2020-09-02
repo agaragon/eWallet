@@ -1,39 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
-import Navbar from "./Navbar";
+import Navbar from "../Components/Navbar";
+
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import Title from "./Title";
-import { actionChannel } from "redux-saga/effects";
-function Bill(props) {
-  let date = props.bill.dueDate;
-  let titleContent = "Dados do seu boleto:";
+
+function ConfirmDeposit(props) {
   return (
     <View style={styles.mainView}>
-      <Title content={titleContent} />
-      <Title
-        content={`Valor a pagar R$ ${props.bill.value
-          .toFixed(2)
-          .replace(".", ",")}`}
-      />
-      <Title
-        content={`Data de vencimento: ${date.getDate()}/${
-          date.getMonth() + 1
-        }/${date.getFullYear()}`}
-      />
+      <Text style={styles.text}>
+        Você realmente quer fazer um depósito no valor de R${" "}
+        {props.amount.toFixed(2).replace(".", ",")}
+      </Text>
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
+          console.log(`ConfirmDeposit ${props.amount}`);
           props.dispatch({
-            type: "SAGA_PAY_BILL",
-            amount: props.bill.value,
-            date: props.bill.dueDate,
-            codeBar: props.bill.codeBar,
-            typeOfTransaction: "Payment",
+            type: "SAGA_MAKE_DEPOSIT",
+            amount: parseFloat(props.amount),
+            account: props.user.toAccount,
+            agency: props.user.toAgency,
+            date: new Date(),
           });
           props.navigation.navigate("Home");
         }}
       >
-        <Text style={styles.btnText}>Confirmar pagamento do boleto</Text>
+        <Text style={styles.btnText}>
+          Você realmente quer gerar esse boleto?
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.btnView}
+        onPress={() => {
+          props.navigation.navigate("Home");
+        }}
+      >
+        <Text style={styles.btnText}>Não gerar boleto.</Text>
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>
@@ -41,6 +43,7 @@ function Bill(props) {
 }
 
 let primaryColor = "#173f5f";
+// let primaryColor = "#111111";
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    bill: state.bill,
+    amount: state.amount,
   };
 };
-export default connect(mapStateToProps)(Bill);
+export default connect(mapStateToProps)(ConfirmDeposit);

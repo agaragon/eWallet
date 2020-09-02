@@ -1,31 +1,27 @@
-import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { StyleSheet } from "react-native";
-import Login from "./Login";
-import Home from "./Home";
-import Payments from "./Payments";
-import Balance from "./Balance";
-import Registration from "./Registration";
-import Deposit from "./Deposit";
-import Bill from "./Bill";
-import BalanceData from "./BalanceData";
-import ConfirmDeposit from "./ConfirmDeposit";
-import ConfirmPayment from "./ConfirmPayment";
+import Login from "./Views/Login";
+import Home from "./Views/Home";
+import Payments from "./Views/Payments";
+import Balance from "./Views/Balance";
+import Registration from "./Views/Registration";
+import Deposit from "./Views/Deposit";
+import Bill from "./Views/Bill";
+import BalanceData from "./Views/BalanceData";
+import ConfirmDeposit from "./Views/ConfirmDeposit";
+import ConfirmPayment from "./Views/ConfirmPayment";
+import BillInfo from "./Views/BillInfo";
+import HistoryOfTransactions from "./Views/HistoryOfTransactions";
 import { Provider } from "react-redux";
-import Transfers from "./Transfers";
+import Transfers from "./Views/Transfers";
 import "react-native-gesture-handler";
 import configureStore from "./configureStore";
 const { persistor, store } = configureStore();
 
 export default function App(props) {
-  let user = {
-    balance: "200,00",
-    name: "André Aragon",
-    cpf: "314.159.265-35",
-  };
   const Stack = createStackNavigator();
   return (
     <Provider store={store}>
@@ -44,7 +40,12 @@ export default function App(props) {
           <Stack.Screen name="BalanceData" component={BalanceData} />
           <Stack.Screen name="ConfirmDeposit" component={ConfirmDeposit} />
           <Stack.Screen name="ConfirmPayment" component={ConfirmPayment} />
+          <Stack.Screen name="BillInfo" component={BillInfo} />
           <Stack.Screen name="Bill" component={Bill} />
+          <Stack.Screen
+            name="HistoryOfTransactions"
+            component={HistoryOfTransactions}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

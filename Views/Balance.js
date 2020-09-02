@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
-import Navbar from "./Navbar";
+import Navbar from "../Components/Navbar";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import Title from "./Title";
+import Title from "../Components/Title";
 
 function Balance(props) {
   const [date, setDate] = useState(new Date(1598051730000));
@@ -35,7 +35,6 @@ function Balance(props) {
         <Title content={titleContent} />
         <View
           style={{
-            // marginTop: 120,
             flexDirection: "row",
             justifyContent: "space-around",
             width: 300,
@@ -64,7 +63,7 @@ function Balance(props) {
             <TouchableOpacity
               style={[styles.btnView]}
               onPress={() => {
-                props.navigation.navigate("BalanceData");
+                props.navigation.navigate("HistoryOfTransactions");
                 props.dispatch({ type: "BILL_QUERY", date: date });
               }}
             >

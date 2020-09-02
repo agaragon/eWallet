@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Navbar from "./Navbar";
+import Navbar from "../Components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faCashRegister,

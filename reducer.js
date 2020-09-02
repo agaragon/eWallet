@@ -1,23 +1,11 @@
-const initialState = {
-  depositValue: 0,
-  user: {
-    name: "",
-    cpf: "",
-    balance: 0,
-  },
-  bill: {
-    dueDate: new Date(),
-    value: 500,
-  },
-  transactions: [],
-  payments: [],
-};
+import initialState from "./initialState";
 
 export default function reducer(state = initialState, action) {
   let newPayment;
   let newPayments;
   let newUser;
   let newTransactions;
+  let moreInfo;
   switch (action.type) {
     case "GET_USER_INFO":
       return {
@@ -30,6 +18,19 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         bill: action.bill,
+      };
+    case "MORE_INFO":
+      moreInfo = {
+        value: action.value,
+        date: action.date,
+        codeBar: action.codeBar,
+        typeOfTransaction: action.typeOfTransaction,
+        toAgency: action.toAgency,
+        toAccount: action.toAccount,
+      };
+      return {
+        ...state,
+        moreInfo: moreInfo,
       };
     case "CREATE_BILL":
       return {

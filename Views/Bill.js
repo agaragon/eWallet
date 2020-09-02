@@ -1,39 +1,39 @@
 import React from "react";
 import { connect } from "react-redux";
-import Navbar from "./Navbar";
-
+import Navbar from "../Components/Navbar";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-
-function ConfirmPayment(props) {
+import Title from "../Components/Title";
+import { actionChannel } from "redux-saga/effects";
+function Bill(props) {
+  let date = props.bill.dueDate;
+  let titleContent = "Dados do seu boleto:";
   return (
     <View style={styles.mainView}>
-      <Text style={styles.text}>
-        Você realmente quer fazer um depósito no valor de R$
-        {props.amount.toFixed(2).replace(".", ",")}
-      </Text>
+      <Title content={titleContent} />
+      <Title
+        content={`Valor a pagar R$ ${props.bill.value
+          .toFixed(2)
+          .replace(".", ",")}`}
+      />
+      <Title
+        content={`Data de vencimento: ${date.getDate()}/${
+          date.getMonth() + 1
+        }/${date.getFullYear()}`}
+      />
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
           props.dispatch({
             type: "SAGA_PAY_BILL",
-            account: props.user.toAccount,
-            agency: props.user.toAgency,
-            date: new Date(),
+            amount: props.bill.value,
+            date: props.bill.dueDate,
+            codeBar: props.bill.codeBar,
+            typeOfTransaction: "Payment",
           });
           props.navigation.navigate("Home");
         }}
       >
-        <Text style={styles.btnText}>
-          Você realmente quer gerar esse boleto?
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.btnView}
-        onPress={() => {
-          props.navigation.navigate("ConfirmPayment");
-        }}
-      >
-        <Text style={styles.btnText}>Não gerar boleto.</Text>
+        <Text style={styles.btnText}>Confirmar pagamento do boleto</Text>
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    amount: state.amount,
+    bill: state.bill,
   };
 };
-export default connect(mapStateToProps)(ConfirmPayment);
+export default connect(mapStateToProps)(Bill);

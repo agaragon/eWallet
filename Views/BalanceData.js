@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Navbar from "./Navbar";
+import Navbar from "../Components/Navbar";
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import Title from "./Title";
+import Title from "../Components/Title";
 function BalanceData(props) {
   let titleContentTransactions = "Suas transações";
   let titleContentPayments = "Seus pagamentos";
@@ -28,7 +28,12 @@ function BalanceData(props) {
         {props.transactions.map((transaction, index) => {
           return (
             <View
-              style={{ borderWidth: 1, width: 300, marginTop: 10 }}
+              style={{
+                borderWidth: 1,
+                width: 300,
+                marginTop: 10,
+                backgroundColor: "lightblue",
+              }}
               key={index}
             >
               <Title
@@ -38,7 +43,9 @@ Data: ${transaction.date.getDate()}/${
                 }/${transaction.date.getFullYear()}
 Conta: ${transaction.toAccount}
 Agência: ${transaction.toAgency}
-Valor: R$ ${transaction.value.toFixed(2).replace(".", ",")}`}
+Valor: R$ ${
+                  transaction.typeOfTransaction === "Depósito" ? "+" : "-"
+                }${transaction.value.toFixed(2).replace(".", ",")}`}
               />
             </View>
           );
@@ -48,10 +55,15 @@ Valor: R$ ${transaction.value.toFixed(2).replace(".", ",")}`}
           return (
             <View
               key={index}
-              style={{ borderWidth: 1, width: 300, marginTop: 10 }}
+              style={{
+                borderWidth: 1,
+                width: 300,
+                marginTop: 10,
+                backgroundColor: "lightblue",
+              }}
             >
               <Title
-                content={`Valor R$${payment.amount
+                content={`Valor R$ -${payment.amount
                   .toFixed(2)
                   .replace(".", ",")}`}
               />
@@ -81,7 +93,6 @@ ${payment.codeBar}`}
 }
 
 let primaryColor = "#173f5f";
-// let primaryColor = "#111111";
 const styles = StyleSheet.create({
   text: {
     marginTop: 20,

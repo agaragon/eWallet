@@ -11,7 +11,7 @@ function Navbar(props) {
       <View style={styles.container}>
         <Image
           style={styles.serasaLogo}
-          source={require("./assets/serasa-logo.jpg")}
+          source={require("../assets/serasa-logo.jpg")}
         />
         <TouchableOpacity
           style={styles.containerFlex}

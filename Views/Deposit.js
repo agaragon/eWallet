@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import Navbar from "./Navbar";
-import { TextInputMask } from "react-native-masked-text";
+import Navbar from "../Components/Navbar";
 import {
   StyleSheet,
   Text,

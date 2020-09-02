@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest, all } from "redux-saga/effects";
-
+import initialState from "./initialState";
 async function getUrl(req) {
   let response = await fetch(req);
   let articles = response.json().articles;
@@ -19,8 +19,8 @@ function* getUsersData(action) {
   yield put({
     type: "GET_USER_INFO",
     user: user,
-    transactions: transactions,
-    payments: payments,
+    transactions: initialState.transactions,
+    payments: initialState.payments,
   });
 }
 function* registerUser(action) {

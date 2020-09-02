@@ -18,7 +18,7 @@ function Login(props) {
     <View style={styles.mainView}>
       <Image
         style={styles.serasaLogo}
-        source={require("./assets/serasa-logo.jpg")}
+        source={require("../assets/serasa-logo.jpg")}
       />
       <Text style={styles.title}>Acesse aqui sua carteira eletrônica!</Text>
       <View style={styles.textView1}>
@@ -64,7 +64,7 @@ function Login(props) {
       </TouchableOpacity>
       <Image
         style={styles.walletLogo}
-        source={require("./assets/e-wallet.jpg")}
+        source={require("../assets/e-wallet.jpg")}
       />
     </View>
   );

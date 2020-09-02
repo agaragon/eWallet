@@ -1,23 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import Navbar from "./Navbar";
+import Navbar from "../Components/Navbar";
 
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-function ConfirmDeposit(props) {
+function ConfirmPayment(props) {
   return (
     <View style={styles.mainView}>
       <Text style={styles.text}>
-        Você realmente quer fazer um depósito no valor de R${" "}
+        Você realmente quer fazer um depósito no valor de R$
         {props.amount.toFixed(2).replace(".", ",")}
       </Text>
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          console.log(`ConfirmDeposit ${props.amount}`);
           props.dispatch({
-            type: "SAGA_MAKE_DEPOSIT",
-            amount: parseFloat(props.amount),
+            type: "SAGA_PAY_BILL",
             account: props.user.toAccount,
             agency: props.user.toAgency,
             date: new Date(),
@@ -32,7 +30,7 @@ function ConfirmDeposit(props) {
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
-          props.navigation.navigate("Home");
+          props.navigation.navigate("ConfirmPayment");
         }}
       >
         <Text style={styles.btnText}>Não gerar boleto.</Text>
@@ -43,7 +41,6 @@ function ConfirmDeposit(props) {
 }
 
 let primaryColor = "#173f5f";
-// let primaryColor = "#111111";
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
@@ -88,4 +85,4 @@ const mapStateToProps = (state) => {
     amount: state.amount,
   };
 };
-export default connect(mapStateToProps)(ConfirmDeposit);
+export default connect(mapStateToProps)(ConfirmPayment);
