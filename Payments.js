@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     padding: 3,
     width: 300,
+    fontSize: 25,
   },
   text: {
     fontSize: 20,

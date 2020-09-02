@@ -1,26 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
-import Title from "./Title";
-import NumberFormat from "react-number-format";
 
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 function ConfirmDeposit(props) {
   return (
     <View style={styles.mainView}>
-      <NumberFormat
-        value={props.amount}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"R$"}
-        renderText={(value) => (
-          <Text style={styles.text}>
-            Você realmente quer fazer um depósito no valor de R$
-            {props.amount}
-          </Text>
-        )}
-      />
+      <Text style={styles.text}>
+        Você realmente quer fazer um depósito no valor de R${" "}
+        {props.amount.toFixed(2).replace(".", ",")}
+      </Text>
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {

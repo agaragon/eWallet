@@ -9,7 +9,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import NumberFormat from "react-number-format";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 function Transfers(props) {
@@ -78,15 +77,11 @@ function Transfers(props) {
           }}
         />
       </View>
-      <NumberFormat
-        value={transferValue}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"R$"}
-        renderText={(text) => (
-          <Text style={styles.text}>O valor da transferência é {text}</Text>
-        )}
-      />
+
+      <Text style={styles.text}>
+        O valor da transferência é R${" "}
+        {transferValue.toFixed(2).replace(".", ",")}
+      </Text>
       <View style={{ marginTop: 20 }}>
         <TouchableOpacity style={styles.btnView} onPress={showDatepicker}>
           <Text style={styles.btnText} onPress={showDatepicker}>

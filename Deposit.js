@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import NumberFormat from "react-number-format";
 
 function Deposit(props) {
   const [depositValue, changeDepositValue] = useState(0);
@@ -38,15 +37,10 @@ function Deposit(props) {
           }}
         />
       </View>
-      <NumberFormat
-        value={depositValue}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"R$"}
-        renderText={(text) => (
-          <Text style={styles.text}>O valor da depósito é {text}</Text>
-        )}
-      />
+
+      <Text style={styles.text}>
+        O valor da depósito é R$ {depositValue.toFixed(2).replace(".", ",")}
+      </Text>
       <View style={{ marginTop: 20 }}></View>
 
       <TouchableOpacity

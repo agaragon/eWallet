@@ -9,20 +9,14 @@ import {
   faPiggyBank,
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
-import NumberFormat from "react-number-format";
 function Home(props) {
   return (
     <View style={styles.mainView}>
       <Text style={styles.title}>Bem Vindo {props.user.name}!</Text>
-      <NumberFormat
-        value={props.user.balance.toFixed(2)}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"R$"}
-        renderText={(text) => (
-          <Text style={styles.text}>O seu saldo é {text}</Text>
-        )}
-      />
+
+      <Text style={styles.text}>
+        O seu saldo é R$ {props.user.balance.toFixed(2).replace(".", ",")}
+      </Text>
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {
