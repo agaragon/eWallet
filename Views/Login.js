@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  ScrollView,
 } from "react-native";
 import { useState } from "react";
 
@@ -15,7 +16,10 @@ function Login(props) {
   let [usersName, changeUsersName] = useState("");
   let [usersPassword, changeUsersPassword] = useState("");
   return (
-    <View style={styles.mainView}>
+    <ScrollView
+      contentContainerStyle={{ alignItems: "center" }}
+      style={styles.mainView}
+    >
       <Image
         style={styles.serasaLogo}
         source={require("../assets/serasa-logo.jpg")}
@@ -66,7 +70,7 @@ function Login(props) {
         style={styles.walletLogo}
         source={require("../assets/e-wallet.jpg")}
       />
-    </View>
+    </ScrollView>
   );
 }
 let primaryColor = "#173f5f";
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
   },
   mainView: {
     backgroundColor: "#3689b2",
-    alignItems: "center",
+    // alignItems: "center",
     flex: 1,
     paddingTop: 100,
   },

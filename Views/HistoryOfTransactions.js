@@ -98,12 +98,21 @@ function HistoryOfTransactions(props) {
                   <Text style={[styles.btnText, { fontSize: 30 }]}>+</Text>
                 </TouchableOpacity>
               </View>
-              {/* <View style={{ justifyContent: "center" }}></View> */}
             </View>
           );
         })}
       </View>
       <Navbar user={props.user} navigation={props.navigation} />
+      <View style={{ alignItems: "center" }}>
+        <TouchableOpacity
+          style={[styles.btnView, { width: 300 }]}
+          onPress={() => {
+            props.navigation.goBack();
+          }}
+        >
+          <Text style={styles.btnText}>Volte à página anterior</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }

@@ -77,6 +77,7 @@ ${payment.codeBar}`}
             </View>
           );
         })}
+
         <TouchableOpacity
           style={[styles.btnView]}
           onPress={() => {

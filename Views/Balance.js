@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet, Text, TouchableOpacity, Button } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Navbar from "../Components/Navbar";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Title from "../Components/Title";

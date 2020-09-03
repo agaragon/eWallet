@@ -20,6 +20,7 @@ function Bill(props) {
           date.getMonth() + 1
         }/${date.getFullYear()}`}
       />
+
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {

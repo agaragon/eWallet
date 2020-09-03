@@ -54,6 +54,14 @@ ${props.moreInfo.codeBar}`}
         <TouchableOpacity
           style={[styles.btnView]}
           onPress={() => {
+            props.navigation.goBack();
+          }}
+        >
+          <Text style={styles.btnText}>Volte à página anterior</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.btnView]}
+          onPress={() => {
             props.navigation.navigate("Home");
           }}
         >

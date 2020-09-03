@@ -67,7 +67,6 @@ function Transfers(props) {
             styles.inputField,
             { width: 90, marginRight: 70, fontSize: 25 },
           ]}
-          // value={transferValue}
           onChangeText={(text) => {
             text = parseFloat(
               text.replace("R$", "").replace(".", "").replace(",", ".")
@@ -183,9 +182,8 @@ const styles = StyleSheet.create({
   mainView: {
     backgroundColor: "#3689b2",
     alignItems: "center",
-    justifyContent: "center",
     flexGrow: 1,
-    paddingTop: 50,
+    paddingTop: 120,
   },
 });
 
