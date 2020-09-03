@@ -20,12 +20,14 @@ function Payments(props) {
 
   const goToHomeText = "Retorne ao menu principal";
   const goToHome = () => props.navigation.navigate("Home");
+
+  const pageTitle = "Faça um pagamento";
   return (
-    <View
-      // contentContainerStyle={{ alignItems: "center", justifyContent: "center" }}
-      style={styles.mainView}
-    >
-      <Title style={{ fontSize: 35 }} content={"Faça um pagamento"}></Title>
+    <View style={styles.mainView}>
+      <Title
+        style={{ fontSize: 35, marginBottom: 60 }}
+        content={pageTitle}
+      ></Title>
       <View style={styles.textView}>
         <Text style={styles.text}>Entre com o código de barras</Text>
         <TextInput
@@ -45,7 +47,6 @@ function Payments(props) {
       </View>
       <TouchableButton width={250} onPress={accessBill} text={accessBillText} />
       <TouchableButton width={250} onPress={goToHome} text={goToHomeText} />
-
       <Navbar user={props.user} navigation={props.navigation} />
     </View>
   );
@@ -53,12 +54,6 @@ function Payments(props) {
 
 let primaryColor = "#173f5f";
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   inputField: {
     margin: 10,
     color: "black",
@@ -75,6 +70,7 @@ const styles = StyleSheet.create({
   },
 
   mainView: {
+    // paddingTop: 200,
     backgroundColor: "#3689b2",
     alignItems: "center",
     justifyContent: "center",

@@ -35,7 +35,7 @@ function* accessBill(action) {
   yield put({
     type: "CREATE_BILL",
     bill: bill,
-    typeOfTransaction: "Payment",
+    typeOfTransaction: "Pagamento",
   });
 }
 function* payBill(action) {
@@ -43,7 +43,7 @@ function* payBill(action) {
     type: "PAY_BILL",
     amount: action.amount,
     date: action.date,
-    typeOfTransaction: "Payment",
+    typeOfTransaction: "Pagamento",
     codeBar: action.codeBar,
   });
 }
@@ -77,26 +77,33 @@ function* transferMoney(action) {
   ]);
 }
 function* makeQuery(action) {
-  console.log(`You got the new info from day ${action.date}`);
-  let bill = {
-    date: "00-00-00",
-    transactions: [
-      {
-        time: "00-00-0000",
-        value: 456556.0,
-        toAccount: "18650-0",
-        toAgency: "1",
-      },
-      { time: "00-00-0000", value: 456.0, toAccount: "11234-5", toAgency: "1" },
-      {
-        time: "00-00-0000",
-        value: 123456.0,
-        toAccount: "14829-4",
-        toAgency: "1",
-      },
-    ],
-  };
-  yield put({ type: "SAVE_BILL_INFO", bill });
+  console.log(
+    `You got the new info from day ${action.startDate} to ${action.finalDate}`
+  );
+  let setOfTransactions = { transactions: initialState.transactions };
+  let setOfPayments = { payments: initialState.payments };
+  let transactions = [];
+  let payments = [];
+  let i;
+  let transaction;
+  let payment;
+
+  for (i = 0; i < setOfTransactions.transactions.length; i++) {
+    transaction = setOfTransactions.transactions[i];
+    if (
+      transaction.date > action.startDate &&
+      transaction.date < action.finalDate
+    ) {
+      transactions.push(transaction);
+    }
+  }
+  for (i = 0; i < setOfPayments.payments.length; i++) {
+    payment = setOfPayments.payments[i];
+    if (payment.date > action.startDate && payment.date < action.finalDate) {
+      payments.push(payment);
+    }
+  }
+  yield put({ type: "SAVE_BILL_INFO", transactions, payments });
 }
 
 export function* sagaFetchUser() {

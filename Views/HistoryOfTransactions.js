@@ -74,7 +74,7 @@ function HistoryOfTransactions(props) {
               >
                 <Text style={styles.text}>{`${transaction.date.getDate()}/${
                   transaction.date.getMonth() + 1
-                }`}</Text>
+                }/${transaction.date.getFullYear()}`}</Text>
                 <Text style={styles.text}>
                   {transaction.typeOfTransaction === "Depósito" ? "+" : "-"}R$
                   {transaction.value.toFixed(2).replace(".", ",")}
