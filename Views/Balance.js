@@ -58,13 +58,11 @@ function Balance(props) {
                 alignItems: "center",
               }}
             >
-              <TouchableOpacity style={[styles.btnView, { width: 125 }]}>
-                <Text
-                  style={styles.btnText}
-                  onPress={showSelectStartDatePicker}
-                >
-                  Início
-                </Text>
+              <TouchableOpacity
+                onPress={showSelectStartDatePicker}
+                style={[styles.btnView, { width: 125 }]}
+              >
+                <Text style={styles.btnText}>Início</Text>
               </TouchableOpacity>
               {showSelectStart && (
                 <DateTimePicker
@@ -82,10 +80,11 @@ function Balance(props) {
               </Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <TouchableOpacity style={[styles.btnView, { width: 125 }]}>
-                <Text style={styles.btnText} onPress={showSelectEndDatePicker}>
-                  Final
-                </Text>
+              <TouchableOpacity
+                onPress={showSelectEndDatePicker}
+                style={[styles.btnView, { width: 125 }]}
+              >
+                <Text style={styles.btnText}>Final</Text>
               </TouchableOpacity>
               {showSelectEnd && (
                 <DateTimePicker
@@ -112,6 +111,8 @@ function Balance(props) {
                     type: "BILL_QUERY",
                     startDate: startDate,
                     finalDate: finalDate,
+                    payments: props.payments,
+                    transactions: props.transactions,
                   });
                 }}
               >
@@ -189,6 +190,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     transactions: state.transactions,
+    payments: state.payments,
   };
 };
 export default connect(mapStateToProps)(Balance);

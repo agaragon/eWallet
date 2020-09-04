@@ -80,10 +80,16 @@ function* makeQuery(action) {
   console.log(
     `You got the new info from day ${action.startDate} to ${action.finalDate}`
   );
-  let setOfTransactions = { transactions: initialState.transactions };
-  let setOfPayments = { payments: initialState.payments };
-  let transactions = [];
-  let payments = [];
+  // let setOfTransactions = { transactions: initialState.transactions };
+  // let setOfPayments = { payments: initialState.payments };
+  let setOfTransactions = {
+    transactions: [...initialState.transactions, ...action.transactions],
+  };
+  let setOfPayments = {
+    payments: [...initialState.payments, ...action.payments],
+  };
+  let queryResultTransactions = [];
+  let queryResultPayments = [];
   let i;
   let transaction;
   let payment;
@@ -94,16 +100,20 @@ function* makeQuery(action) {
       transaction.date > action.startDate &&
       transaction.date < action.finalDate
     ) {
-      transactions.push(transaction);
+      queryResultTransactions.push(transaction);
     }
   }
   for (i = 0; i < setOfPayments.payments.length; i++) {
     payment = setOfPayments.payments[i];
     if (payment.date > action.startDate && payment.date < action.finalDate) {
-      payments.push(payment);
+      queryResultPayments.push(payment);
     }
   }
-  yield put({ type: "SAVE_BILL_INFO", transactions, payments });
+  yield put({
+    type: "SAVE_BILL_INFO",
+    queryResultTransactions,
+    queryResultPayments,
+  });
 }
 
 export function* sagaFetchUser() {

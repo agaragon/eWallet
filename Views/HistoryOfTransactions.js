@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    transactions: state.transactions,
-    payments: state.payments,
+    transactions: state.queryResultTransactions,
+    payments: state.queryResultPayments,
   };
 };
 

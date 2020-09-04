@@ -17,8 +17,8 @@ export default function reducer(state = initialState, action) {
     case "SAVE_BILL_INFO":
       return {
         ...state,
-        transactions: action.transactions,
-        payments: action.payments,
+        queryResultTransactions: action.queryResultTransactions,
+        queryResultPayments: action.queryResultPayments,
       };
     case "MORE_INFO":
       moreInfo = {
