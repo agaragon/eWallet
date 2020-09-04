@@ -1,5 +1,12 @@
 import { call, put, takeEvery, takeLatest, all } from "redux-saga/effects";
 import initialState from "./initialState";
+const user = {
+  name: "André Guimarães Aragon",
+  cpf: "094.991.069-43",
+  balance: 500.0,
+  toAccount: "18960-0",
+  toAgency: "01",
+};
 async function getUrl(req) {
   let response = await fetch(req);
   let articles = response.json().articles;

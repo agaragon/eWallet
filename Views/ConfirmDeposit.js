@@ -25,9 +25,7 @@ function ConfirmDeposit(props) {
           props.navigation.navigate("Home");
         }}
       >
-        <Text style={styles.btnText}>
-          Você realmente quer gerar esse boleto?
-        </Text>
+        <Text style={styles.btnText}>Sim</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.btnView}
@@ -35,7 +33,7 @@ function ConfirmDeposit(props) {
           props.navigation.navigate("Home");
         }}
       >
-        <Text style={styles.btnText}>Não gerar boleto.</Text>
+        <Text style={styles.btnText}>Não gerar boleto</Text>
       </TouchableOpacity>
       <Navbar user={props.user} navigation={props.navigation} />
     </View>
@@ -43,7 +41,6 @@ function ConfirmDeposit(props) {
 }
 
 let primaryColor = "#173f5f";
-// let primaryColor = "#111111";
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
@@ -68,7 +65,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 25,
     fontWeight: "600",
     color: "#c3f2fc",
     marginRight: 20,

@@ -23,7 +23,7 @@ function Registration(props) {
     <View style={styles.mainView}>
       <Image
         style={styles.serasaLogo}
-        source={require("../assets/serasa-logo.jpg")}
+        source={require("../assets/serasa-logo.png")}
       />
       <Text style={styles.title}>
         Um código foi enviado ao seu celular, por favor insira o seu valor

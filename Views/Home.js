@@ -26,6 +26,7 @@ function Home(props) {
         <Text style={styles.btnText}>Acesse aqui o seu extrato</Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faPiggyBank} />
       </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => props.navigation.navigate("Transfers")}
@@ -33,6 +34,7 @@ function Home(props) {
         <Text style={styles.btnText}>Faça uma transferência</Text>
         <FontAwesomeIcon size={40} color="#c3f2fc" icon={faCashRegister} />
       </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.btnView}
         onPress={() => {

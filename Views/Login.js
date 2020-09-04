@@ -22,7 +22,7 @@ function Login(props) {
     >
       <Image
         style={styles.serasaLogo}
-        source={require("../assets/serasa-logo.jpg")}
+        source={require("../assets/serasa-logo.png")}
       />
       <Text style={styles.title}>Acesse aqui sua carteira eletrônica!</Text>
       <View style={styles.textView1}>
@@ -51,7 +51,11 @@ function Login(props) {
         style={styles.btnView}
         onPress={() => {
           props.navigation.navigate("Home");
-          props.dispatch({ type: "LOGIN" });
+          props.dispatch({
+            type: "LOGIN",
+            password: usersPassword,
+            usersName: usersName,
+          });
         }}
       >
         <Text style={styles.btnText}>Accesse sua conta</Text>
@@ -135,6 +139,7 @@ const styles = StyleSheet.create({
   },
   serasaLogo: {
     margin: -100,
+    marginTop: -50,
     marginBottom: -40,
     width: 260,
     height: 260,
